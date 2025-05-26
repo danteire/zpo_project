@@ -21,4 +21,36 @@ public class Obecnosc {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "termin_id", nullable = false)
     private Termin termin;
+
+    public Long getId() {
+        return id;
+    }
+
+    public statusEnum getStatus() {
+        return status;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public Termin getTermin() {
+        return termin;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setTermin(Termin termin) {
+        this.termin = termin;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public void setStatus(statusEnum status) {
+        this.status = status;
+    }
 }

@@ -13,7 +13,21 @@ public class Grupa {
     @Column(nullable = false)
     private String nazwa;
 
-    public Long getId() {
-        return this.id;
+    public void setNazwa(String nazwa) {
+        this.nazwa = nazwa;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNazwa() {
+        return nazwa;
+    }
+
+
 }

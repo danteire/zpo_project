@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/students")
+@RequestMapping("/students")
 public class StudentController {
 
     private final StudentService studentService;
@@ -46,7 +46,7 @@ public class StudentController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{id}/grupa/{grupaId}")
+    @PutMapping("/{id}/group/{grupaId}")
     public ResponseEntity<Student> assignStudentToGrupa(@PathVariable Long id, @PathVariable Long grupaId) {
         Optional<Student> studentOpt = studentService.getStudentById(id);
         Optional<Grupa> grupaOpt = grupaService.getGrupaById(grupaId);
@@ -59,7 +59,7 @@ public class StudentController {
         return ResponseEntity.ok(student);
     }
 
-    @DeleteMapping("/{id}/grupa")
+    @DeleteMapping("/{id}/group")
     public ResponseEntity<Student> removeStudentFromGrupa(@PathVariable Long id) {
         try {
             Student updatedStudent = studentService.removeStudentFromGrupa(id);
