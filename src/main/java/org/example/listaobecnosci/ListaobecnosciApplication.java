@@ -8,6 +8,9 @@ public class ListaobecnosciApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ListaobecnosciApplication.class, args);
+
     }
+
+
 
 }
