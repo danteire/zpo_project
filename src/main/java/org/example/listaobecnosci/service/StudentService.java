@@ -1,6 +1,5 @@
 package org.example.listaobecnosci.service;
 
-import lombok.RequiredArgsConstructor;
 import org.example.listaobecnosci.Student;
 import org.example.listaobecnosci.Grupa;
 import org.example.listaobecnosci.repository.GrupaRepository;
@@ -11,11 +10,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class StudentService {
 
     private final StudentRepository studentRepository;
     private final GrupaRepository grupaRepository;
+
+    public StudentService(StudentRepository studentRepository, GrupaRepository grupaRepository) {
+        this.studentRepository = studentRepository;
+        this.grupaRepository = grupaRepository;
+    }
 
     public List<Student> getAllStudents() {
         return studentRepository.findAll();

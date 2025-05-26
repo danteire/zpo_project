@@ -1,13 +1,9 @@
 package org.example.listaobecnosci;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 @Entity
 @Table(name = "obecnosc")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Obecnosc {
 
     @Id

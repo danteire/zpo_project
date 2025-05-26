@@ -1,14 +1,10 @@
 package org.example.listaobecnosci;
 
 import jakarta.persistence.*;
-import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "termin")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Termin {
 
     @Id
@@ -21,4 +17,12 @@ public class Termin {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "grupa_id", nullable = false)
     private Grupa grupa;
+
+    public void setGrupa(Grupa grupa) {
+        this.grupa = grupa;
+    }
+
+    public Grupa getGrupa() {
+        return this.grupa;
+    }
 }

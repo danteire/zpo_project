@@ -1,13 +1,9 @@
 package org.example.listaobecnosci;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 @Entity
 @Table(name = "grupa")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Grupa {
 
     @Id
@@ -16,4 +12,8 @@ public class Grupa {
 
     @Column(nullable = false)
     private String nazwa;
+
+    public Long getId() {
+        return this.id;
+    }
 }

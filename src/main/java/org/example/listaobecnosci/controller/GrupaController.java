@@ -1,6 +1,5 @@
 package org.example.listaobecnosci.controller;
 
-import lombok.RequiredArgsConstructor;
 import org.example.listaobecnosci.Grupa;
 import org.example.listaobecnosci.service.GrupaService;
 import org.springframework.http.ResponseEntity;
@@ -10,10 +9,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/grupy")
-@RequiredArgsConstructor
 public class GrupaController {
 
     private final GrupaService grupaService;
+
+    public GrupaController(GrupaService grupaService) {
+        this.grupaService = grupaService;
+    }
 
     @GetMapping
     public List<Grupa> getAllGrupy() {

@@ -1,13 +1,10 @@
 package org.example.listaobecnosci;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 @Entity
 @Table(name = "student")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class Student {
 
     @Id
@@ -26,4 +23,8 @@ public class Student {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "grupa_id", nullable = false)
     private Grupa grupa;
+
+    public void setGrupa(Grupa grupa) {
+        this.grupa = grupa;
+    }
 }

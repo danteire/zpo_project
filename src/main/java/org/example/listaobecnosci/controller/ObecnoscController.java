@@ -1,6 +1,5 @@
 package org.example.listaobecnosci.controller;
 
-import lombok.RequiredArgsConstructor;
 import org.example.listaobecnosci.Obecnosc;
 import org.example.listaobecnosci.service.ObecnoscService;
 import org.example.listaobecnosci.statusEnum;
@@ -11,10 +10,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/obecnosci")
-@RequiredArgsConstructor
 public class ObecnoscController {
 
     private final ObecnoscService obecnoscService;
+
+    public ObecnoscController(ObecnoscService obecnoscService) {
+        this.obecnoscService = obecnoscService;
+    }
 
     @GetMapping
     public List<Obecnosc> getAllObecnosci() {

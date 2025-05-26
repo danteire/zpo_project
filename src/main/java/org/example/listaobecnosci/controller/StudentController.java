@@ -1,6 +1,6 @@
 package org.example.listaobecnosci.controller;
 
-import lombok.RequiredArgsConstructor;
+
 import org.example.listaobecnosci.Grupa;
 import org.example.listaobecnosci.Student;
 import org.example.listaobecnosci.service.StudentService;
@@ -13,11 +13,15 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/students")
-@RequiredArgsConstructor
 public class StudentController {
 
     private final StudentService studentService;
     private final GrupaService grupaService;
+
+    public StudentController(StudentService studentService, GrupaService grupaService) {
+        this.studentService = studentService;
+        this.grupaService = grupaService;
+    }
 
     @GetMapping
     public List<Student> getAllStudents() {

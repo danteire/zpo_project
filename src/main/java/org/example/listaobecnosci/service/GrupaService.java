@@ -1,6 +1,6 @@
 package org.example.listaobecnosci.service;
 
-import lombok.RequiredArgsConstructor;
+
 import org.example.listaobecnosci.Grupa;
 import org.example.listaobecnosci.repository.GrupaRepository;
 import org.springframework.stereotype.Service;
@@ -9,10 +9,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
+
 public class GrupaService {
 
     private final GrupaRepository grupaRepository;
+
+    public GrupaService(GrupaRepository grupaRepository) {
+        this.grupaRepository = grupaRepository;
+    }
 
     public List<Grupa> getAllGrupy() {
         return grupaRepository.findAll();

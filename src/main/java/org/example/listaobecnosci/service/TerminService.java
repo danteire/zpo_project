@@ -1,6 +1,5 @@
 package org.example.listaobecnosci.service;
 
-import lombok.RequiredArgsConstructor;
 import org.example.listaobecnosci.Grupa;
 import org.example.listaobecnosci.Termin;
 import org.example.listaobecnosci.repository.TerminRepository;
@@ -10,10 +9,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class TerminService {
 
     private final TerminRepository terminRepository;
+
+    public TerminService(TerminRepository terminRepository) {
+        this.terminRepository = terminRepository;
+    }
 
     public List<Termin> getAllTerminy() {
         return terminRepository.findAll();

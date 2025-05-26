@@ -1,6 +1,5 @@
 package org.example.listaobecnosci.controller;
 
-import lombok.RequiredArgsConstructor;
 import org.example.listaobecnosci.Grupa;
 import org.example.listaobecnosci.Termin;
 import org.example.listaobecnosci.service.GrupaService;
@@ -13,11 +12,16 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/terminy")
-@RequiredArgsConstructor
+
 public class TerminController {
 
     private final TerminService terminService;
     private final GrupaService grupaService;
+
+    public TerminController(TerminService terminService, GrupaService grupaService) {
+        this.terminService = terminService;
+        this.grupaService = grupaService;
+    }
 
     @GetMapping
     public List<Termin> getAllTerminy() {
