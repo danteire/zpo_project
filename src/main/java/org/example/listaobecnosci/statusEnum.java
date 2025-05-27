@@ -1,7 +1,7 @@
-package org.example.listaobecnosci;
-
-public enum statusEnum {
-    OBECNY,
-    NIEOBECNY,
-    SPOZNIONY
-}
+//package org.example.listaobecnosci;
+//
+//public enum statusEnum {
+//    OBECNY,
+//    NIEOBECNY,
+//    SPOZNIONY
+//}
