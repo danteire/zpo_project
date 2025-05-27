@@ -1,4 +1,4 @@
-package org.example.listaobecnosci.AppViews;
+package org.example.listaobecnosci.AppViews.Login;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -8,10 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
 
 public class LoginView extends Application {
 
