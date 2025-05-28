@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.listaobecnosci.AppViews.MainMenu.MainMenuController">
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="490.0" style="-fx-background-color: #0090FE;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="ZStud" layoutX="74.0" layoutY="164.0" mnemonicParsing="false" text="Zarządzanie Studentami " />
+            <Button fx:id="ZGrup" layoutX="324.0" layoutY="164.0" mnemonicParsing="false" text="Zarządnia Grupami" />
+            <Button fx:id="ZTerm" layoutX="82.0" layoutY="289.0" mnemonicParsing="false" text="Zarządznie terminami" />
+            <Button fx:id="RejOb" layoutX="317.0" layoutY="289.0" mnemonicParsing="false" text="Rejestracja Obecności" />
+            <Button fx:id="DzOb" layoutX="48.0" layoutY="420.0" mnemonicParsing="false" text="Wyświetlanie Dziennika Obecnosci" />
+            <Button fx:id="PodsObec" layoutX="305.0" layoutY="420.0" mnemonicParsing="false" text="Podsumowanie Obecności" />
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="200.0" prefWidth="490.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="163.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Witaj">
+               <font>
+                  <Font size="72.0" />
+               </font>
+            </Text>
+            <Text fx:id="userName" layoutX="185.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="user">
+               <font>
+                  <Font size="64.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="closeIcon" onMouseClicked="#handleClose" fitHeight="44.0" fitWidth="33.0" layoutX="457.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Login/icons/close.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

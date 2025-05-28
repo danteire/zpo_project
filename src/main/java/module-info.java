@@ -4,4 +4,7 @@ module org.example {
 
     opens  org.example.listaobecnosci.AppViews.Login to javafx.fxml;
     exports org.example.listaobecnosci.AppViews.Login;
+
+    opens org.example.listaobecnosci.AppViews.MainMenu to javafx.fxml;
+    exports org.example.listaobecnosci.AppViews.MainMenu;
 }
