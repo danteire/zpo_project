@@ -20,7 +20,7 @@ public class Student {
     @Column(nullable = false, unique = true, length = 6)
     private String nrIndeksu;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "grupa_id")
     private Grupa grupa;
 
