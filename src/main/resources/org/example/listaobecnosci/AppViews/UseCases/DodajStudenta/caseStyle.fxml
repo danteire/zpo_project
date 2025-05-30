@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.listaobecnosci.AppViews.UseCases.DodajStudenta.CaseController">
+    <left>
+        <AnchorPane prefHeight="200.0" prefWidth="490.0" style="-fx-background-color: #0090FE;" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="ZStud" layoutX="74.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleZStud" text="Zarządzanie Studentami " />
+                <Button fx:id="ZGrup" layoutX="324.0" layoutY="164.0" mnemonicParsing="false" text="Zarządnia Grupami" />
+                <Button fx:id="ZTerm" layoutX="82.0" layoutY="289.0" mnemonicParsing="false" text="Zarządznie terminami" />
+                <Button fx:id="DodStud" disable="true" layoutX="317.0" layoutY="289.0" mnemonicParsing="false" text="Dodaj Studenta" />
+                <Button fx:id="DzOb" layoutX="48.0" layoutY="420.0" mnemonicParsing="false" text="Wyświetlanie Dziennika Obecnosci" />
+                <Button fx:id="PodsObec" layoutX="305.0" layoutY="420.0" mnemonicParsing="false" text="Podsumowanie Obecności" />
+            </children>
+        </AnchorPane>
+    </left>
+    <right>
+        <AnchorPane fx:id="rightAP" prefHeight="200.0" prefWidth="490.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fx:id="closeIcon" fitHeight="44.0" fitWidth="33.0" layoutX="457.0" onMouseClicked="#handleClose" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../Login/icons/close.png" />
+                    </image>
+                </ImageView>
+                <VBox alignment="CENTER" layoutX="95.0" layoutY="250.0" prefHeight="220.0" prefWidth="307.0" spacing="10">
+
+                    <TextField fx:id="imieField" prefHeight="40.0" prefWidth="307.0" promptText="Imię" />
+                    <TextField fx:id="nazwiskoField" prefHeight="40.0" prefWidth="307.0" promptText="Nazwisko" />
+                    <TextField fx:id="indeksField" prefHeight="40.0" promptText="Nr indeksu" />
+
+                    <Button onAction="#handleDodajStudenta" style="-fx-background-color: transparent; -fx-border-color: #123456; -fx-border-width: 0px 0px 2px 0px;" text="Dodaj studenta" />
+                </VBox>
+            <Text layoutX="27.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wprowadź Dane Nowego Studenta">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Text>
+            </children>
+        </AnchorPane>
+    </right>
+</BorderPane>
