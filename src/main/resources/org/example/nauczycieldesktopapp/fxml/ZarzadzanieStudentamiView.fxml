@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.nauczycieldesktopapp.controller.ZarzadzanieStudentamiController">
+    <left>
+        <AnchorPane prefHeight="200.0" prefWidth="490.0" style="-fx-background-color: #0090FE;" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="ZStud" disable="true" layoutX="74.0" layoutY="164.0" mnemonicParsing="false" text="Zarządzanie Studentami " />
+                <Button fx:id="ZGrup" layoutX="324.0" layoutY="164.0" mnemonicParsing="false" text="Zarządnia Grupami" />
+                <Button fx:id="ZTerm" layoutX="82.0" layoutY="289.0" mnemonicParsing="false" text="Zarządznie terminami" />
+                <Button fx:id="DodStud" layoutX="317.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleDodajStudenta" text="Dodaj Studenta" />
+                <Button fx:id="DzOb" layoutX="48.0" layoutY="420.0" mnemonicParsing="false" text="Wyświetlanie Dziennika Obecnosci" />
+                <Button fx:id="PodsObec" layoutX="305.0" layoutY="420.0" mnemonicParsing="false" text="Podsumowanie Obecności" />
+            </children>
+        </AnchorPane>
+    </left>
+    <right>
+        <AnchorPane fx:id="rightAP" prefHeight="200.0" prefWidth="490.0" BorderPane.alignment="CENTER">
+            <ImageView fx:id="closeIcon" fitHeight="44.0" fitWidth="33.0" layoutX="457.0" onMouseClicked="#handleClose"
+                       pickOnBounds="true" preserveRatio="true">
+                <Image url="@../images/close.png"/>
+            </ImageView>
+            <TableView fx:id="studentTable" layoutX="145.0" layoutY="34.0" prefHeight="666.0" prefWidth="490.0"
+                       AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                       AnchorPane.topAnchor="34.0">
+                <columns>
+                    <TableColumn fx:id="imieColumn" prefWidth="75.0" text="imie"/>
+                    <TableColumn fx:id="nazwiskoColumn" prefWidth="75.0" text="nazwisko"/>
+                    <TableColumn fx:id="indeksColumn" prefWidth="75.0" text="indeks"/>
+                    <TableColumn fx:id="deleteColumn" prefWidth="75.0" text="usun"/>
+                </columns>
+            </TableView>
+        </AnchorPane>
+    </right>
+</BorderPane>
