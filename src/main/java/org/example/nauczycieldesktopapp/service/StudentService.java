@@ -80,7 +80,7 @@ public class StudentService {
 
     public List<Student> getStudentsByGrupa(Long id) throws IOException {
         // GET IP/students/groups/_IDGRUPY_
-        String restURL = "http://3.71.11.3:8080/groups/" + id;
+        String restURL = "http://3.71.11.3:8080/students/groups/" + id;
         URL endpoint = new URL(restURL);
         HttpURLConnection conn = (HttpURLConnection) endpoint.openConnection();
         conn.setRequestMethod("GET");

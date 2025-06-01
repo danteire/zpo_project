@@ -99,30 +99,11 @@ public class ZarzadznieGrupamiController extends MainMenuController{
                     Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
 
                     try {
-                        ZarzadzanieGrupamiView.launchSubList(stage, grupa);
+                        ZarzadzanieGrupamiView.launchSubList(grupa);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
 
-//                    try {
-//
-//                        // Wczytaj FXML nowego okna
-//                        FXMLLoader loader = new FXMLLoader(getClass().getResource("org/example/nauczycieldesktopapp/fxml/ZarzadzanieStudentamiView.fxml"));
-//                        Parent root = loader.load();
-//
-//                        // Przekazanie grupy do kontrolera nowego widoku
-//                        StudentListViewController controller = loader.getController();
-//                        controller.setGrupa(grupa);
-//
-//                        // Utwórz nowe okno
-//                        Stage stage = new Stage();
-//                        stage.setTitle("Studenci grupy: " + grupa.getNazwa());
-//                        stage.setScene(new Scene(root, 600, 400));
-//                        stage.show();
-//
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
                 });
             }
 

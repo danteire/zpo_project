@@ -36,11 +36,13 @@ public class ZarzadzanieGrupamiView {
         stage.setTitle("Dodaj Studenta");
         stage.show();
     }
-    public static void launchSubList(Stage stage, Grupa grupa) throws IOException {
+    public static void launchSubList(Grupa grupa) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/StudentListView.fxml"));
         Parent root = fxmlLoader.load();
 
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 600, 400);
+
+        Stage stage = new Stage();
 
         root.setOnMousePressed(mouseEvent -> {
             xOffset = mouseEvent.getSceneX();

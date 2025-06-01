@@ -15,8 +15,8 @@
         <AnchorPane prefHeight="200.0" prefWidth="490.0" style="-fx-background-color: #0090FE;" BorderPane.alignment="CENTER">
             <children>
                 <Button fx:id="ZStud" layoutX="74.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleZarzadzanieStudentami" text="Zarządzanie Studentami" />
-                <Button fx:id="ZGrup" disable="true" layoutX="324.0" layoutY="164.0" mnemonicParsing="false" text="Zarządzanie Grupami" />
-                <Button fx:id="DodajGrupe" onAction="#handleDodajGrupe" layoutX="82.0" layoutY="289.0" mnemonicParsing="false" disable="true" text="Dodaj grupę" />
+                <Button fx:id="ZGrup" disable="true" onAction="#handleZarzadanieGrupami" layoutX="324.0" layoutY="164.0" mnemonicParsing="false" text="Zarządzanie Grupami" />
+                <Button fx:id="DodajGrupe" layoutX="82.0" layoutY="289.0" mnemonicParsing="false" text="Dodaj grupę" onAction="#handleDodajGrupe"/>
                 <Button fx:id="DodStud" layoutX="317.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleDodajStudenta" text="Dodaj Studenta" />
                 <Button fx:id="DzOb" layoutX="48.0" layoutY="420.0" mnemonicParsing="false" text="Wyświetlanie Dziennika Obecności" />
                 <Button fx:id="PodsObec" layoutX="305.0" layoutY="420.0" mnemonicParsing="false" text="Podsumowanie Obecności" />

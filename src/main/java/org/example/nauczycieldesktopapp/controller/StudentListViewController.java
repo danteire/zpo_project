@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+import javafx.stage.Stage;
 import org.example.nauczycieldesktopapp.model.Grupa;
 import org.example.nauczycieldesktopapp.model.Student;
 
