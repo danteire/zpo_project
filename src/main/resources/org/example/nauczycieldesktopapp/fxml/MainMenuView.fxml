@@ -15,7 +15,7 @@
             <children>
                 <Button fx:id="ZStud" layoutX="74.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleZarzadzanieStudentami" text="Zarządzanie Studentami" />
                 <Button fx:id="ZGrup" layoutX="324.0" layoutY="164.0" mnemonicParsing="false" text="Zarządzanie Grupami" />
-                <Button fx:id="ZTerm" layoutX="82.0" layoutY="289.0" mnemonicParsing="false" text="Zarządzanie terminami" />
+                <Button fx:id="DodajGrupe" layoutX="82.0" layoutY="289.0" mnemonicParsing="false" text="Dodaj grupę" onAction="#handleDodajGrupe"/>
                 <Button fx:id="DodStud" layoutX="317.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleDodajStudenta" text="Dodaj Studenta" />
                 <Button fx:id="DzOb" layoutX="48.0" layoutY="420.0" mnemonicParsing="false" text="Wyświetlanie Dziennika Obecności" />
                 <Button fx:id="PodsObec" layoutX="305.0" layoutY="420.0" mnemonicParsing="false" text="Podsumowanie Obecności" />

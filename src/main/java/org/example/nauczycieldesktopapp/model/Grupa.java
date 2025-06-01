@@ -5,6 +5,12 @@ public class Grupa {
     private Long id;
     private String nazwa;
 
+    public Grupa() {}
+
+    public Grupa(String nazwa) {
+        this.nazwa = nazwa;
+    }
+
     public long getId() {
         return id;
     }
