@@ -1,5 +1,6 @@
 package org.example.nauczycieldesktopapp.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.nauczycieldesktopapp.model.Grupa;
 
@@ -8,7 +9,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class GrupaService {
 
@@ -36,5 +39,37 @@ public class GrupaService {
         con.disconnect();
 
         return status == 200;
+    }
+    public boolean removeGrupa(Grupa grupa) throws IOException {
+        try {
+            String restURL = "http://3.71.11.3:8080/groups";
+            URL url = new URL(restURL + "/" + grupa.getId());
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("DELETE");
+
+            int responseCode = connection.getResponseCode();
+            connection.disconnect();
+            return responseCode == HttpURLConnection.HTTP_OK || responseCode == HttpURLConnection.HTTP_NO_CONTENT;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public List<Grupa> getAllGroups() throws IOException {
+        String restURL = "http://3.71.11.3:8080/groups";
+        URL endpoint = new URL(restURL);
+        HttpURLConnection conn = (HttpURLConnection) endpoint.openConnection();
+        conn.setRequestMethod("GET");
+
+        Scanner scanner = new Scanner(conn.getInputStream());
+        StringBuilder json = new StringBuilder();
+        while (scanner.hasNextLine()) {
+            json.append(scanner.nextLine());
+        }
+        scanner.close();
+
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(json.toString(), new TypeReference<>() {});
     }
 }
