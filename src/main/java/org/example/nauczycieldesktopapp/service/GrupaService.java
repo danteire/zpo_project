@@ -56,7 +56,7 @@ public class GrupaService {
             return false;
         }
     }
-    public List<Grupa> getAllGroups() throws IOException {
+    public static List<Grupa> getAllGroups() throws IOException {
         String restURL = "http://3.71.11.3:8080/groups";
         URL endpoint = new URL(restURL);
         HttpURLConnection conn = (HttpURLConnection) endpoint.openConnection();

@@ -4,7 +4,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.example.nauczycieldesktopapp.controller.GroupListViewController;
+import org.example.nauczycieldesktopapp.controller.StudentListViewController;
 import org.example.nauczycieldesktopapp.controller.ZarzadzanieStudentamiController;
+import org.example.nauczycieldesktopapp.model.Grupa;
 
 import java.io.IOException;
 
@@ -32,6 +35,34 @@ public class ZarzadzanieStudentamiView {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Zarządzanie Studentami");
+        stage.show();
+    }
+
+    public static void launchSubList() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/GroupListView.fxml"));
+        Parent root = fxmlLoader.load();
+
+        Scene scene = new Scene(root, 600, 400);
+        Stage stage = new Stage();
+
+        root.setOnMousePressed(mouseEvent -> {
+            xOffset = mouseEvent.getSceneX();
+            yOffset = mouseEvent.getSceneY();
+        });
+
+        root.setOnMouseDragged(mouseEvent -> {
+            stage.setX(mouseEvent.getScreenX() - xOffset);
+            stage.setY(mouseEvent.getScreenY() - yOffset);
+        });
+
+        stage.setScene(scene);
+        stage.setTitle("Lista Grup");
+
+        GroupListViewController controller = fxmlLoader.getController();
+        controller.setGrupa();
+
+
+
         stage.show();
     }
 }

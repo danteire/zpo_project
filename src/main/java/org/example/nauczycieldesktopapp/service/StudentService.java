@@ -114,4 +114,22 @@ public class StudentService {
             return false;
         }
     }
+
+    //PUT http://3.71.11.3:8080/students/(idstudenta)/group/(idgrupy)
+    public boolean addStudentToGroup(Long studentId, Long groupId) throws IOException {
+        try {
+            String restURL = "http://3.71.11.3:8080/students/"+ studentId + "/group/" + groupId;
+            URL url = new URL(restURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("PUT");
+
+            int responseCode = connection.getResponseCode();
+            connection.disconnect();
+            return responseCode == HttpURLConnection.HTTP_OK || responseCode == HttpURLConnection.HTTP_NO_CONTENT;
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
