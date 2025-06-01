@@ -95,4 +95,23 @@ public class StudentService {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(json.toString(), new TypeReference<>() {});
     }
+
+    //DELETE http://3.71.11.3:8080/students/3/group
+    public boolean removeStudentFromGroup(Student student) {
+        try {
+            System.out.println(student.getId());
+            String restURL = "http://3.71.11.3:8080/students/"+student.getId()+"/group";
+            URL url = new URL(restURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("DELETE");
+
+            int responseCode = connection.getResponseCode();
+            connection.disconnect();
+            return responseCode == HttpURLConnection.HTTP_OK || responseCode == HttpURLConnection.HTTP_NO_CONTENT;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

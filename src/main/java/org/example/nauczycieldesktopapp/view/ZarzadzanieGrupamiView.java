@@ -4,12 +4,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 import org.example.nauczycieldesktopapp.controller.StudentListViewController;
 import org.example.nauczycieldesktopapp.model.Grupa;
-import org.example.nauczycieldesktopapp.service.GrupaService;
 
 public class ZarzadzanieGrupamiView {
 
@@ -41,7 +39,6 @@ public class ZarzadzanieGrupamiView {
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root, 600, 400);
-
         Stage stage = new Stage();
 
         root.setOnMousePressed(mouseEvent -> {
@@ -53,8 +50,6 @@ public class ZarzadzanieGrupamiView {
             stage.setX(mouseEvent.getScreenX() - xOffset);
             stage.setY(mouseEvent.getScreenY() - yOffset);
         });
-
-
 
         stage.setScene(scene);
         stage.setTitle("Lista Studentów Grupy: " + grupa.nazwaProperty().getValue());

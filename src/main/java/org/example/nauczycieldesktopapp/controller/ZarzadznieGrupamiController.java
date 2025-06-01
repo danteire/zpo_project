@@ -4,19 +4,16 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.stage.Stage;
 import javafx.util.Callback;
+
 import org.example.nauczycieldesktopapp.model.Grupa;
-import org.example.nauczycieldesktopapp.model.Student;
+
 import org.example.nauczycieldesktopapp.service.GrupaService;
-import org.example.nauczycieldesktopapp.service.StudentService;
+
 import org.example.nauczycieldesktopapp.view.ZarzadzanieGrupamiView;
 
 import java.io.IOException;
@@ -32,10 +29,11 @@ public class ZarzadznieGrupamiController extends MainMenuController{
     @FXML public TableColumn<Grupa, Void> listaBtnColumn;
     @FXML public TableColumn<Grupa, Void> deleteColumn;
 
+
     private final GrupaService grupaService = new GrupaService();
-    private final StudentService studentService = new StudentService();
 
     private final ObservableList<Grupa> grupaObservableList = FXCollections.observableArrayList();
+
 
 
     @FXML
@@ -96,8 +94,6 @@ public class ZarzadznieGrupamiController extends MainMenuController{
 
                     Grupa grupa = getTableView().getItems().get(getIndex());
 
-                    Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-
                     try {
                         ZarzadzanieGrupamiView.launchSubList(grupa);
                     } catch (IOException e) {
@@ -114,6 +110,6 @@ public class ZarzadznieGrupamiController extends MainMenuController{
             }
         };
 
-        listaBtnColumn.setCellFactory(cellFactory);  // <- dodajesz tę kolumnę do TableView w FXML
+        listaBtnColumn.setCellFactory(cellFactory);
     }
 }
