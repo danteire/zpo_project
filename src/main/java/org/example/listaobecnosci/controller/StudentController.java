@@ -46,6 +46,11 @@ public class StudentController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/groups/{grupaId}")
+    public List<Student> getStudentsByGrupa(@PathVariable Long grupaId) {
+        return studentService.getStudentsByGrupaId(grupaId);
+    }
+
     @PutMapping("/{id}/group/{grupaId}")
     public ResponseEntity<Student> assignStudentToGrupa(@PathVariable Long id, @PathVariable Long grupaId) {
         Optional<Student> studentOpt = studentService.getStudentById(id);
