@@ -25,6 +25,7 @@ public class StudentListViewController {
     @FXML private TableView<Student> studentTable;
     @FXML private TableColumn<Student, String> imieColumn;
     @FXML private TableColumn<Student, String> nazwiskoColumn;
+    @FXML private TableColumn<Student, String> nrIndeksuColumn;
     @FXML private TableColumn<Student, Void> deleteStudentColumn;
 
 
@@ -68,6 +69,7 @@ public class StudentListViewController {
 
         imieColumn.setCellValueFactory(data -> data.getValue().imieProperty());
         nazwiskoColumn.setCellValueFactory(data -> data.getValue().nazwiskoProperty());
+        nrIndeksuColumn.setCellValueFactory(data -> data.getValue().indeksProperty());
 
         deleteStudentFromGrupaButtonTable();
 
