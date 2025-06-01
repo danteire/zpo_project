@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.example.nauczycieldesktopapp.view.DodawanieGrupyView;
 import org.example.nauczycieldesktopapp.view.DodawanieStudentaView;
 import org.example.nauczycieldesktopapp.view.ZarzadzanieStudentamiView;
 
@@ -42,6 +43,13 @@ public class MainMenuController {
         System.out.println("Dodaj studenta clicked");
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         DodawanieStudentaView.launch(stage);
+    }
+
+    @FXML
+    private void handleDodajGrupe(ActionEvent event) throws IOException {
+        System.out.println("Dodaj grupe clicked");
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        DodawanieGrupyView.launch(stage);
     }
 }
 

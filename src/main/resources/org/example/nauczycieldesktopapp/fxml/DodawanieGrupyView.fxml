@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="700.0" prefWidth="980.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.nauczycieldesktopapp.controller.DodawanieGrupyController">
+
+    <left>
+        <AnchorPane prefHeight="200.0" prefWidth="490.0" style="-fx-background-color: #0090FE;" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="ZStud" layoutX="74.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleZarzadzanieStudentami" text="Zarządzanie Studentami" />
+                <Button fx:id="ZGrup" layoutX="324.0" layoutY="164.0" mnemonicParsing="false" text="Zarządzanie Grupami" />
+                <Button fx:id="DodajGrupe" layoutX="82.0" layoutY="289.0" mnemonicParsing="false" disable="true" text="Dodaj grupę" />
+                <Button fx:id="DodStud" layoutX="317.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleDodajStudenta" text="Dodaj Studenta" />
+                <Button fx:id="DzOb" layoutX="48.0" layoutY="420.0" mnemonicParsing="false" text="Wyświetlanie Dziennika Obecności" />
+                <Button fx:id="PodsObec" layoutX="305.0" layoutY="420.0" mnemonicParsing="false" text="Podsumowanie Obecności" />
+            </children>
+        </AnchorPane>
+    </left>
+
+    <right>
+        <AnchorPane fx:id="rightAP" prefHeight="200.0" prefWidth="490.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fx:id="closeIcon" fitHeight="44.0" fitWidth="33.0" layoutX="457.0"
+                           onMouseClicked="#handleClose" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../images/close.png"/>
+                </ImageView>
+
+                <VBox alignment="CENTER" layoutX="95.0" layoutY="250.0" prefHeight="220.0" prefWidth="307.0" spacing="10">
+                    <TextField fx:id="nazwaField" prefHeight="40.0" prefWidth="307.0" promptText="Nazwa grupy" />
+                    <Button onAction="#handleDodawanieGrupy"
+                            style="-fx-background-color: transparent; -fx-border-color: #123456; -fx-border-width: 0px 0px 2px 0px;"
+                            text="Dodaj grupę" />
+                </VBox>
+
+                <Text layoutX="27.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wprowadź Dane Nowej Grupy">
+                    <font>
+                        <Font size="28.0" />
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+    </right>
+</BorderPane>
