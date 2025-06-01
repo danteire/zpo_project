@@ -33,7 +33,7 @@ public class ZarzadzanieStudentamiController extends MainMenuController {
         nazwiskoColumn.setCellValueFactory(cellData -> cellData.getValue().nazwiskoProperty());
         indeksColumn.setCellValueFactory(cellData -> cellData.getValue().indeksProperty());
 
-        addDeleteButtonToTable();
+        deleteButtonTable();
 
         try {
             List<Student> students = studentService.getAllStudents();
@@ -45,7 +45,7 @@ public class ZarzadzanieStudentamiController extends MainMenuController {
     }
 
 
-    private void addDeleteButtonToTable() {
+    private void deleteButtonTable() {
         Callback<TableColumn<Student, Void>, TableCell<Student, Void>> cellFactory = param -> new TableCell<>() {
             private final Button btn = new Button("Usuń");
 
