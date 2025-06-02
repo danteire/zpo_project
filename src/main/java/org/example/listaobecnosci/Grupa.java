@@ -1,9 +1,11 @@
 package org.example.listaobecnosci;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "grupa")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Grupa {
 
     @Id
