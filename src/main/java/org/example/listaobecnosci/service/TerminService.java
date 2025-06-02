@@ -12,9 +12,11 @@ import java.util.Optional;
 public class TerminService {
 
     private final TerminRepository terminRepository;
+    private final GrupaService grupaService;
 
-    public TerminService(TerminRepository terminRepository) {
+    public TerminService(TerminRepository terminRepository, GrupaService grupaService) {
         this.terminRepository = terminRepository;
+        this.grupaService = grupaService;
     }
 
     public List<Termin> getAllTerminy() {
@@ -23,6 +25,11 @@ public class TerminService {
 
     public Optional<Termin> getTerminById(Long id) {
         return terminRepository.findById(id);
+    }
+
+    public List<Termin> getTerminByGrupaId(Long grupaId) {
+        Optional<Grupa> grupaOpt = grupaService.getGrupaById(grupaId);
+        return grupaOpt.map(terminRepository::findByGrupa).orElse(List.of());
     }
 
     public Termin saveTermin(Termin termin) {

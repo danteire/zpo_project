@@ -14,7 +14,7 @@ public class Termin {
     @Column(nullable = false)
     private LocalDateTime data;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "grupa_id", nullable = false)
     private Grupa grupa;
 

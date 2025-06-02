@@ -34,6 +34,16 @@ public class TerminController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/group/{grupaId}")
+    public ResponseEntity<List<Termin>> getTerminyByGrupa(@PathVariable Long grupaId) {
+        Optional<Grupa> grupaOpt = grupaService.getGrupaById(grupaId);
+        if(grupaOpt.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        List<Termin> terminy = terminService.getTerminByGrupaId(grupaId);
+        return ResponseEntity.ok(terminy);
+    }
+
     @PostMapping
     public ResponseEntity<Termin> addTermin(@RequestBody Termin termin) {
         // do przypisania terminu do grupy: grupa.id w JSON!
