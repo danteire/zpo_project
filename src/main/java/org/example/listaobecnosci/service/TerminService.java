@@ -4,6 +4,7 @@ import org.example.listaobecnosci.Grupa;
 import org.example.listaobecnosci.Termin;
 import org.example.listaobecnosci.repository.TerminRepository;
 import org.springframework.stereotype.Service;
+import org.hibernate.Hibernate;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +21,9 @@ public class TerminService {
     }
 
     public List<Termin> getAllTerminy() {
-        return terminRepository.findAll();
+        List<Termin> terminy = terminRepository.findAll();
+        terminy.forEach(t -> Hibernate.initialize(t.getGrupa())); // ← tutaj
+        return terminy;
     }
 
     public Optional<Termin> getTerminById(Long id) {
@@ -29,7 +32,12 @@ public class TerminService {
 
     public List<Termin> getTerminByGrupaId(Long grupaId) {
         Optional<Grupa> grupaOpt = grupaService.getGrupaById(grupaId);
-        return grupaOpt.map(terminRepository::findByGrupa).orElse(List.of());
+        if (grupaOpt.isEmpty()) {
+            return List.of();
+        }
+        List<Termin> terminy = terminRepository.findByGrupa(grupaOpt.get());
+        terminy.forEach(t -> Hibernate.initialize(t.getGrupa()));
+        return terminy;
     }
 
     public Termin saveTermin(Termin termin) {
