@@ -21,10 +21,9 @@ public class TerminService {
     }
 
     public List<Termin> getAllTerminy() {
-        List<Termin> terminy = terminRepository.findAll();
-        terminy.forEach(t -> Hibernate.initialize(t.getGrupa()));
-        return terminy;
+        return terminRepository.findAllWithGrupa();
     }
+
 
     public Optional<Termin> getTerminById(Long id) {
         Optional<Termin> terminOpt = terminRepository.findById(id);
@@ -34,12 +33,7 @@ public class TerminService {
 
     public List<Termin> getTerminByGrupaId(Long grupaId) {
         Optional<Grupa> grupaOpt = grupaService.getGrupaById(grupaId);
-        if (grupaOpt.isEmpty()) {
-            return List.of();
-        }
-        List<Termin> terminy = terminRepository.findByGrupa(grupaOpt.get());
-        terminy.forEach(t -> Hibernate.initialize(t.getGrupa()));
-        return terminy;
+        return grupaOpt.map(grupa -> terminRepository.findByGrupaWithFetch(grupa)).orElse(List.of());
     }
 
     public Termin saveTermin(Termin termin) {
