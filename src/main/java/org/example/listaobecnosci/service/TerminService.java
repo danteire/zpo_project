@@ -22,14 +22,12 @@ public class TerminService {
 
     public List<Termin> getAllTerminy() {
         List<Termin> terminy = terminRepository.findAll();
-        terminy.forEach(t -> Hibernate.initialize(t.getGrupa()));
+        terminy.forEach(t -> Hibernate.initialize(t.getGrupa())); // ← tutaj
         return terminy;
     }
 
     public Optional<Termin> getTerminById(Long id) {
-        Optional<Termin> terminOpt = terminRepository.findById(id);
-        terminOpt.ifPresent(t -> Hibernate.initialize(t.getGrupa())); // ← tutaj!
-        return terminOpt;
+        return terminRepository.findById(id);
     }
 
     public List<Termin> getTerminByGrupaId(Long grupaId) {
