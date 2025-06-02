@@ -10,6 +10,7 @@ import org.example.nauczycieldesktopapp.controller.ZarzadzanieStudentamiControll
 import org.example.nauczycieldesktopapp.model.Grupa;
 
 import java.io.IOException;
+import java.util.function.Consumer;
 
 public class ZarzadzanieStudentamiView {
 
@@ -38,7 +39,7 @@ public class ZarzadzanieStudentamiView {
         stage.show();
     }
 
-    public static void launchSubList() throws IOException {
+    public static void launchSubList(Consumer<Grupa> onGroupSelected) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/GroupListView.fxml"));
         Parent root = fxmlLoader.load();
 
@@ -59,10 +60,14 @@ public class ZarzadzanieStudentamiView {
         stage.setTitle("Lista Grup");
 
         GroupListViewController controller = fxmlLoader.getController();
-        controller.setGrupa();
+        controller.setGrupa(); // np. załaduj grupy z serwera
+        controller.setOnGroupSelected(grupa -> {
+            onGroupSelected.accept(grupa);  // wykonuje się w controllerze po wyborze
+            stage.close(); // zamknij po wyborze
+        });
 
-
-
+        stage.setTitle("Wybierz grupę");
+        stage.setScene(scene);
         stage.show();
     }
 }

@@ -11,6 +11,7 @@ import org.example.nauczycieldesktopapp.model.Grupa;
 import org.example.nauczycieldesktopapp.model.Student;
 import org.example.nauczycieldesktopapp.service.GrupaService;
 import org.example.nauczycieldesktopapp.service.StudentService;
+import org.example.nauczycieldesktopapp.view.ZarzadzanieStudentamiView;
 
 import java.io.IOException;
 import java.util.List;
@@ -38,6 +39,7 @@ public class ZarzadzanieStudentamiController extends MainMenuController {
         indeksColumn.setCellValueFactory(cellData -> cellData.getValue().indeksProperty());
 
         deleteButtonTable();
+        checkAndPrintGroupColumn();
 
         try {
             List<Student> students = studentService.getAllStudents();
@@ -84,19 +86,14 @@ public class ZarzadzanieStudentamiController extends MainMenuController {
             {
                 assignButton.setOnAction(event -> {
                     Student student = getTableView().getItems().get(getIndex());
-                    Grupa grupa = new Grupa();
+
                     try {
-
-                        launchSubList();
-
-
-                        // Callback po wyborze grupy
-                        setOnGroupSelected(grupa -> {
+                        ZarzadzanieStudentamiView.launchSubList(grupa -> {
                             try {
-                                boolean success = studentService.addStudentToGroup(student.getId(), );
+                                boolean success = studentService.addStudentToGroup(student.getId(), grupa.getId());
                                 if (success) {
                                     student.setGrupa(grupa);
-                                    getTableView().refresh();
+                                    studentTable.refresh();
                                 } else {
                                     System.err.println("Nie udało się przypisać.");
                                 }
@@ -104,12 +101,6 @@ public class ZarzadzanieStudentamiController extends MainMenuController {
                                 throw new RuntimeException(e);
                             }
                         });
-
-                        Stage stage = new Stage();
-                        stage.setTitle("Wybierz grupę");
-                        stage.setScene(new javafx.scene.Scene(root, 400, 300));
-                        stage.show();
-
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

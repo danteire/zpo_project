@@ -27,7 +27,7 @@ public class GroupListViewController {
     @FXML private TableColumn<Grupa, Void> addColumn;
 
     private List<Grupa> grupy;
-    private Consumer<Grupa> onGroupSelected;
+    public Consumer<Grupa> onGroupSelected;
 
     public void setGrupa() throws IOException {
         grupy = GrupaService.getAllGroups();
