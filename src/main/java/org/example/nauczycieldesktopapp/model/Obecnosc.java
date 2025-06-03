@@ -2,6 +2,9 @@ package org.example.nauczycieldesktopapp.model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import org.example.nauczycieldesktopapp.service.StudentService;
+
+import java.io.IOException;
 
 public class Obecnosc {
     private Long id;
@@ -46,5 +49,10 @@ public class Obecnosc {
 
     public void setTerminID(Long terminID) {
         this.terminID = terminID;
+    }
+
+    public Student getStudent(Long studentId) throws IOException {
+        StudentService studentService = new StudentService();
+        return (Student) studentService.getStudentsByID(studentId);
     }
 }

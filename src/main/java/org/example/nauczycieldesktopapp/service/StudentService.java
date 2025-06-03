@@ -96,6 +96,25 @@ public class StudentService {
         return mapper.readValue(json.toString(), new TypeReference<>() {});
     }
 
+    public List<Student> getStudentsByID(Long id) throws IOException {
+        // GET IP/students/groups/_IDGRUPY_
+        String restURL = "http://3.71.11.3:8080/students/" + id;
+        URL endpoint = new URL(restURL);
+        HttpURLConnection conn = (HttpURLConnection) endpoint.openConnection();
+        conn.setRequestMethod("GET");
+
+        Scanner scanner = new Scanner(conn.getInputStream());
+        StringBuilder json = new StringBuilder();
+        while (scanner.hasNextLine()) {
+            json.append(scanner.nextLine());
+        }
+        scanner.close();
+
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(json.toString(), new TypeReference<>() {});
+    }
+
+
     //DELETE http://3.71.11.3:8080/students/3/group
     public boolean removeStudentFromGroup(Student student) {
         try {
