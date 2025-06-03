@@ -11,8 +11,8 @@ public class Obecnosc {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private statusEnum status;
+    @Column(nullable = false, columnDefinition = "varchar(255) default 'BRAK'")
+    private statusEnum status = statusEnum.BRAK;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id", nullable = false)
