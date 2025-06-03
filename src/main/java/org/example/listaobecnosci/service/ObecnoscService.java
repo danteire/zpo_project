@@ -25,9 +25,20 @@ public class ObecnoscService {
         return obecnoscRepository.findById(id);
     }
 
-    public Obecnosc saveObecnosc(Obecnosc obecnosc) {
-        return obecnoscRepository.save(obecnosc);
+    public Obecnosc saveOrUpdateObecnosc(Obecnosc obecnosc) {
+        if (obecnosc.getId() != null) {
+            return obecnoscRepository.findById(obecnosc.getId())
+                    .map(existing -> {
+                        existing.setStatus(obecnosc.getStatus());
+                        existing.setStudent(obecnosc.getStudent());
+                        existing.setTermin(obecnosc.getTermin());
+                        return obecnoscRepository.save(existing);
+                    })
+                    .orElseGet(() -> obecnoscRepository.save(obecnosc)); // jeśli ID jest podane, ale nie ma takiego rekordu
+        }
+        return obecnoscRepository.save(obecnosc); // jeśli ID == null
     }
+
 
     public void deleteObecnosc(Long id) {
         obecnoscRepository.deleteById(id);

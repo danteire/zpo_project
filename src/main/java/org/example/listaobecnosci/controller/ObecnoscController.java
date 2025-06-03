@@ -30,10 +30,11 @@ public class ObecnoscController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public Obecnosc addObecnosc(@RequestBody Obecnosc obecnosc) {
-        return obecnoscService.saveObecnosc(obecnosc);
+    @PutMapping
+    public Obecnosc saveOrUpdateObecnosc(@RequestBody Obecnosc obecnosc) {
+        return obecnoscService.saveOrUpdateObecnosc(obecnosc);
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteObecnosc(@PathVariable Long id) {
