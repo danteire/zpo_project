@@ -15,7 +15,7 @@ public class ZarzadzanieGrupamiView {
     private static double yOffset = 0;
 
     public static void launch(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ZarzadzanieGrupami.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ZarzadzanieViews/ZarzadzanieGrupami.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);
@@ -35,7 +35,7 @@ public class ZarzadzanieGrupamiView {
         stage.show();
     }
     public static void launchSubList(Grupa grupa) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/StudentListView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ListViews/StudentListView.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root, 600, 400);

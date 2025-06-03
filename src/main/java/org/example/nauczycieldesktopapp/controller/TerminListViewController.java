@@ -8,11 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.example.nauczycieldesktopapp.model.Grupa;
-import org.example.nauczycieldesktopapp.model.Student;
 import org.example.nauczycieldesktopapp.model.Termin;
 import org.example.nauczycieldesktopapp.service.TerminService;
 
@@ -25,6 +22,7 @@ public class TerminListViewController {
 
     @FXML public TableColumn<Termin, String> idColumn;
     @FXML public TableColumn<Termin, String> dateColumn;
+    @FXML public TableColumn<Termin, Void> deleteColumn;
     @FXML public TableColumn<Termin, Void> checkColumn;
 
     private final TerminService terminService = new TerminService();
@@ -40,12 +38,12 @@ public class TerminListViewController {
         idColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getId()).asString());
         dateColumn.setCellValueFactory(cellData -> cellData.getValue().dataProperty());
 
-        checkObecnoscButtonTable();
+        usunTerminButton();
     }
 
-    private void checkObecnoscButtonTable() {
+    private void usunTerminButton() {
         Callback<TableColumn<Termin, Void>, TableCell<Termin, Void>> cellFactory = param -> new TableCell<>() {
-            private final Button btn = new Button("Usuń z grupy");
+            private final Button btn = new Button("Usuń Termin");
 
             {
                 btn.setOnAction(event -> {
@@ -73,6 +71,9 @@ public class TerminListViewController {
                 setGraphic(empty ? null : btn);
             }
         };
-        checkColumn.setCellFactory(cellFactory);
+        deleteColumn.setCellFactory(cellFactory);
+    }
+    private void checkTerminButton() {
+
     }
 }

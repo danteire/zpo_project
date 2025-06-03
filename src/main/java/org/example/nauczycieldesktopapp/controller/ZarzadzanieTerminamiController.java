@@ -13,10 +13,13 @@ import org.example.nauczycieldesktopapp.model.Grupa;
 import org.example.nauczycieldesktopapp.model.Termin;
 import org.example.nauczycieldesktopapp.service.GrupaService;
 import org.example.nauczycieldesktopapp.service.TerminService;
+import org.example.nauczycieldesktopapp.view.DodawanieTerminuView;
 import org.example.nauczycieldesktopapp.view.ZarzadzanieTerminamiView;
 
 import java.io.IOException;
 import java.util.List;
+
+import static javafx.application.Application.launch;
 
 public class ZarzadzanieTerminamiController extends MainMenuController{
 
@@ -27,7 +30,7 @@ public class ZarzadzanieTerminamiController extends MainMenuController{
 
     @FXML public TableColumn<Grupa, Void> listaBtnColumn;
     @FXML public TableColumn<Grupa, Void> deleteColumn;
-
+    @FXML public TableColumn<Grupa, Void> addColumn;
 
     private final GrupaService grupaService = new GrupaService();
     private final TerminService terminService = new TerminService();
@@ -43,6 +46,7 @@ public class ZarzadzanieTerminamiController extends MainMenuController{
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nazwaProperty());
 
         terminListButtonTable();
+        addButtonTable();
 
         try {
             List<Grupa> groups = grupaService.getAllGroups();
@@ -60,19 +64,16 @@ public class ZarzadzanieTerminamiController extends MainMenuController{
             {
                 btn.setOnAction(event -> {
                     Grupa grupa = getTableView().getItems().get(getIndex());
-                    boolean success = false;
+
+                    Termin termin = new Termin();
+                    termin.setGrupa(grupa);
                     try {
-                        Termin termin = new Termin();
-                        success = terminService.deleteTermin(termin);
+                        //TODO: utworzyć okienko
+                        DodawanieTerminuView.launch(termin);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                    if (success) {
-                        grupaObservableList.remove(getIndex());
-                        System.out.println("Usunięto grupę: " + grupa.getId());
-                    } else {
-                        System.err.println("Błąd usuwania grupy.");
-                    }
+
                 });
             }
 
@@ -82,7 +83,7 @@ public class ZarzadzanieTerminamiController extends MainMenuController{
                 setGraphic(empty ? null : btn);
             }
         };
-        deleteColumn.setCellFactory(cellFactory);
+        addColumn.setCellFactory(cellFactory);
     }
 
     private void terminListButtonTable() {

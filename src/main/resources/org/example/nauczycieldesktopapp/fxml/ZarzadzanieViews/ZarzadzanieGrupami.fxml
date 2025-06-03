@@ -3,43 +3,35 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.nauczycieldesktopapp.controller.ZarzadzanieTerminamiController"
-            prefHeight="700.0" prefWidth="980.0">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.nauczycieldesktopapp.controller.ZarzadznieGrupamiController">
 
     <left>
         <AnchorPane prefHeight="700.0" prefWidth="490.0" style="-fx-background-color: #0090FE;" BorderPane.alignment="CENTER">
             <children>
                 <Button fx:id="ZStud" layoutX="74.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleZarzadzanieStudentami" text="Zarządzanie Studentami" />
-                <Button fx:id="ZGrup" onAction="#handleZarzadanieGrupami" layoutX="324.0" layoutY="164.0" mnemonicParsing="false" text="Zarządzanie Grupami" />
+                <Button fx:id="ZGrup" disable="true" onAction="#handleZarzadanieGrupami" layoutX="324.0" layoutY="164.0" mnemonicParsing="false" text="Zarządzanie Grupami" />
                 <Button fx:id="DodajGrupe" layoutX="82.0" layoutY="289.0" mnemonicParsing="false" text="Dodaj grupę" onAction="#handleDodajGrupe"/>
                 <Button fx:id="DodStud" layoutX="317.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleDodajStudenta" text="Dodaj Studenta" />
-                <Button fx:id="DzOb" disable="true" onAction="#handleZarzadzanieTerminami" layoutX="48.0" layoutY="420.0" mnemonicParsing="false" text="Zarządzanie Terminami" />
+                <Button fx:id="DzOb" onAction="#handleZarzadzanieTerminami" layoutX="48.0" layoutY="420.0" mnemonicParsing="false" text="Zarządzanie Terminami" />
                 <Button fx:id="PodsObec" layoutX="305.0" layoutY="420.0" mnemonicParsing="false" text="Dodaj Termin" />
             </children>
         </AnchorPane>
     </left>
 
     <right>
-        <AnchorPane fx:id="rightAP" prefHeight="700.0" prefWidth="490.0" BorderPane.alignment="CENTER">
-            <ImageView fx:id="closeIcon" onMouseClicked="#handleClose" fitHeight="44.0" fitWidth="33.0" layoutX="457.0"
-                       pickOnBounds="true" preserveRatio="true">
-                <image>
-                    <Image url="@../images/close.png"/>
-                </image>
+        <AnchorPane fx:id="rightAP" prefHeight="200.0" prefWidth="490.0" BorderPane.alignment="CENTER">
+            <ImageView fx:id="closeIcon" fitHeight="44.0" fitWidth="33.0" layoutX="457.0" onMouseClicked="#handleClose" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../../images/close.png" />
             </ImageView>
             <TableView fx:id="groupTable" layoutX="145.0" layoutY="34.0" prefHeight="666.0" prefWidth="490.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="34.0">
                 <columns>
-                    <TableColumn fx:id="idColumn" maxWidth="50" prefWidth="50.0" text="ID" />
+                    <TableColumn fx:id="idColumn" maxWidth="1.7976931348623157E308" prefWidth="50.0" text="ID" />
                     <TableColumn fx:id="nameColumn" maxWidth="200.0" prefWidth="100.0" text="Nazwa" />
-                    <TableColumn fx:id="listaBtnColumn" maxWidth="500.0" minWidth="0.0" prefWidth="150.0" text="Lista Terminów" />
-                    <TableColumn fx:id="addColumn" prefWidth="100.0" text="Dodaj Termin" />
+                    <TableColumn fx:id="listaBtnColumn" maxWidth="500.0" minWidth="0.0" prefWidth="150.0" text="Lista Studentów" />
+                    <TableColumn fx:id="deleteColumn" prefWidth="100.0" text="usun grupę" />
                 </columns>
             </TableView>
         </AnchorPane>
     </right>
-
 </BorderPane>

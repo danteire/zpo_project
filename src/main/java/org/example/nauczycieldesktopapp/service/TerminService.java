@@ -2,6 +2,8 @@ package org.example.nauczycieldesktopapp.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.example.nauczycieldesktopapp.model.Student;
 import org.example.nauczycieldesktopapp.model.Termin;
 
@@ -54,12 +56,14 @@ public class TerminService {
     public boolean addTermin(Termin termin) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
+
+
         Map<String, Object> dane = new HashMap<>();
         dane.put("data", termin.getData().toString());
-
+        System.out.println(dane);
         Map<String, Object> grupaMap = new HashMap<>();
         grupaMap.put("id", termin.getGrupa().getId());
-
+        System.out.println(dane);
         dane.put("grupa", grupaMap);
 
         String json = mapper.writeValueAsString(dane);
@@ -85,7 +89,7 @@ public class TerminService {
 
     public List<Termin> getTerminByGrupa(Long id) throws IOException {
         // GET IP/students/groups/_IDGRUPY_
-        String restURL = "http://3.71.11.3:8080/terminy/" + id;
+        String restURL = "http://3.71.11.3:8080/terminy/group/" + id;
         URL endpoint = new URL(restURL);
         HttpURLConnection conn = (HttpURLConnection) endpoint.openConnection();
         conn.setRequestMethod("GET");
@@ -97,7 +101,10 @@ public class TerminService {
         }
         scanner.close();
 
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper()
+                .registerModule(new JavaTimeModule())
+                .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        System.out.println(json.toString());
         return mapper.readValue(json.toString(), new TypeReference<>() {});
     }
 }

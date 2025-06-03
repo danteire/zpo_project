@@ -29,7 +29,7 @@
             <children>
                 <ImageView fx:id="closeIcon" fitHeight="44.0" fitWidth="33.0" layoutX="457.0"
                            onMouseClicked="#handleClose" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../images/close.png"/>
+                    <Image url="@../../images/close.png"/>
                 </ImageView>
 
                 <VBox alignment="CENTER" layoutX="95.0" layoutY="250.0" prefHeight="220.0" prefWidth="307.0" spacing="10">

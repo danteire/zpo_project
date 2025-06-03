@@ -4,7 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.example.nauczycieldesktopapp.controller.StudentListViewController;
 import org.example.nauczycieldesktopapp.controller.TerminListViewController;
 import org.example.nauczycieldesktopapp.controller.ZarzadzanieTerminamiController;
 import org.example.nauczycieldesktopapp.model.Grupa;
@@ -16,7 +15,7 @@ public class ZarzadzanieTerminamiView {
     private static double yOffset = 0;
 
     public static void launch(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ZarzadzanieStudentamiView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ZarzadzanieTerminami.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ZarzadzanieStudentamiView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ZarzadzanieViews/ZarzadzanieTerminami.fxml"));
         Parent root = fxmlLoader.load();
 
         // Dragging window logic
@@ -38,10 +37,10 @@ public class ZarzadzanieTerminamiView {
     }
 
     public static void launchSubList(Grupa grupa) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/StudentListView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ListViews/TerminListView.fxml"));
         Parent root = fxmlLoader.load();
 
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 800, 400);
         Stage stage = new Stage();
 
         root.setOnMousePressed(mouseEvent -> {

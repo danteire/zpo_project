@@ -21,7 +21,7 @@
         <AnchorPane fx:id="rightAP" prefHeight="200.0" prefWidth="490.0" BorderPane.alignment="CENTER">
             <ImageView fx:id="closeIcon" fitHeight="44.0" fitWidth="33.0" layoutX="457.0" onMouseClicked="#handleClose"
                        pickOnBounds="true" preserveRatio="true">
-                <Image url="@../images/close.png"/>
+                <Image url="@../../images/close.png"/>
             </ImageView>
             <TableView fx:id="studentTable" layoutX="145.0" layoutY="34.0" prefHeight="666.0" prefWidth="490.0"
                        AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"

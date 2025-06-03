@@ -3,6 +3,7 @@ module org.example {
     requires javafx.controls;
     requires com.fasterxml.jackson.databind;
     requires java.net.http;
+    requires com.fasterxml.jackson.datatype.jsr310;
 
     exports org.example.nauczycieldesktopapp to javafx.graphics;
     opens org.example.nauczycieldesktopapp to javafx.fxml;
