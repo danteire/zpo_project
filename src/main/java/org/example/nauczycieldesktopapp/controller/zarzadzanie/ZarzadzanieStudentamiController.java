@@ -1,22 +1,18 @@
-package org.example.nauczycieldesktopapp.controller;
+package org.example.nauczycieldesktopapp.controller.zarzadzanie;
 
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import javafx.util.Callback;
-import org.example.nauczycieldesktopapp.model.Grupa;
+import org.example.nauczycieldesktopapp.controller.MainMenuController;
 import org.example.nauczycieldesktopapp.model.Student;
-import org.example.nauczycieldesktopapp.service.GrupaService;
 import org.example.nauczycieldesktopapp.service.StudentService;
-import org.example.nauczycieldesktopapp.view.ZarzadzanieStudentamiView;
+import org.example.nauczycieldesktopapp.view.zarzadzanie.ZarzadzanieStudentamiView;
 
 import java.io.IOException;
 import java.util.List;
-
-import static org.example.nauczycieldesktopapp.view.ZarzadzanieStudentamiView.launchSubList;
 
 public class ZarzadzanieStudentamiController extends MainMenuController {
 

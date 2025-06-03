@@ -1,4 +1,4 @@
-package org.example.nauczycieldesktopapp.controller;
+package org.example.nauczycieldesktopapp.controller.zarzadzanie;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -10,16 +10,17 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
 
+import org.example.nauczycieldesktopapp.controller.MainMenuController;
 import org.example.nauczycieldesktopapp.model.Grupa;
 
 import org.example.nauczycieldesktopapp.service.GrupaService;
 
-import org.example.nauczycieldesktopapp.view.ZarzadzanieGrupamiView;
+import org.example.nauczycieldesktopapp.view.zarzadzanie.ZarzadzanieGrupamiView;
 
 import java.io.IOException;
 import java.util.List;
 
-public class ZarzadznieGrupamiController extends MainMenuController{
+public class ZarzadznieGrupamiController extends MainMenuController {
 
     @FXML public TableView<Grupa> groupTable;
 

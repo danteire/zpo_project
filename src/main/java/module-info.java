@@ -12,4 +12,7 @@ module org.example {
 
     opens org.example.nauczycieldesktopapp.model to com.fasterxml.jackson.databind;
     exports org.example.nauczycieldesktopapp.model;
+    opens org.example.nauczycieldesktopapp.controller.dodawanie to javafx.fxml;
+    opens org.example.nauczycieldesktopapp.controller.listsViews to javafx.fxml;
+    opens org.example.nauczycieldesktopapp.controller.zarzadzanie to javafx.fxml;
 }

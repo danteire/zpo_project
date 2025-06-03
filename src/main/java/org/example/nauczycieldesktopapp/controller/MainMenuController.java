@@ -7,7 +7,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.example.nauczycieldesktopapp.view.*;
+import org.example.nauczycieldesktopapp.view.dodawanie.DodawanieGrupyView;
+import org.example.nauczycieldesktopapp.view.dodawanie.DodawanieStudentaView;
+import org.example.nauczycieldesktopapp.view.zarzadzanie.ZarzadzanieGrupamiView;
+import org.example.nauczycieldesktopapp.view.zarzadzanie.ZarzadzanieStudentamiView;
+import org.example.nauczycieldesktopapp.view.zarzadzanie.ZarzadzanieTerminamiView;
 
 import java.io.IOException;
 

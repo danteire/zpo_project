@@ -1,12 +1,13 @@
-package org.example.nauczycieldesktopapp.view;
+package org.example.nauczycieldesktopapp.view.zarzadzanie;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.example.nauczycieldesktopapp.controller.GroupListViewController;
-import org.example.nauczycieldesktopapp.controller.ZarzadzanieStudentamiController;
+import org.example.nauczycieldesktopapp.controller.listsViews.GroupListViewController;
+import org.example.nauczycieldesktopapp.controller.zarzadzanie.ZarzadzanieStudentamiController;
 import org.example.nauczycieldesktopapp.model.Grupa;
+import org.example.nauczycieldesktopapp.view.dodawanie.DodawanieStudentaView;
 
 import java.io.IOException;
 import java.util.function.Consumer;

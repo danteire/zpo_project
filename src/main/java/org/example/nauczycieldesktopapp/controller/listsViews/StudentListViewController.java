@@ -1,4 +1,4 @@
-package org.example.nauczycieldesktopapp.controller;
+package org.example.nauczycieldesktopapp.controller.listsViews;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

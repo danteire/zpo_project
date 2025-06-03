@@ -1,4 +1,4 @@
-package org.example.nauczycieldesktopapp.view;
+package org.example.nauczycieldesktopapp.view.dodawanie;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,13 +7,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class DodawanieGrupyView {
-
+public class DodawanieStudentaView {
     private static double xOffset = 0;
     private static double yOffset = 0;
 
     public static void launch(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/DodawanieViews/DodawanieGrupyView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/DodawanieViews/DodawanieStudentaView.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);
@@ -29,9 +28,8 @@ public class DodawanieGrupyView {
         });
 
         stage.setScene(scene);
-        stage.setTitle("Dodaj Grupę");
+        stage.setTitle("Dodaj Studenta");
         stage.show();
     }
-
-
 }
+

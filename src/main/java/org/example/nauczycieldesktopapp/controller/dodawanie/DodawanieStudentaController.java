@@ -1,9 +1,10 @@
-package org.example.nauczycieldesktopapp.controller;
+package org.example.nauczycieldesktopapp.controller.dodawanie;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import org.example.nauczycieldesktopapp.controller.MainMenuController;
 import org.example.nauczycieldesktopapp.model.Student;
 import org.example.nauczycieldesktopapp.service.StudentService;
 

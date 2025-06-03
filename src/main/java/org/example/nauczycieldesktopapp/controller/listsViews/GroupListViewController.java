@@ -1,4 +1,4 @@
-package org.example.nauczycieldesktopapp.controller;
+package org.example.nauczycieldesktopapp.controller.listsViews;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -11,7 +11,6 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.example.nauczycieldesktopapp.model.Grupa;
-import org.example.nauczycieldesktopapp.model.Student;
 import org.example.nauczycieldesktopapp.service.GrupaService;
 
 import java.io.IOException;

@@ -1,44 +1,47 @@
-package org.example.nauczycieldesktopapp.view;
+package org.example.nauczycieldesktopapp.view.zarzadzanie;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.example.nauczycieldesktopapp.controller.listsViews.TerminListViewController;
+import org.example.nauczycieldesktopapp.controller.zarzadzanie.ZarzadzanieTerminamiController;
+import org.example.nauczycieldesktopapp.model.Grupa;
+import org.example.nauczycieldesktopapp.view.dodawanie.DodawanieStudentaView;
+
 import java.io.IOException;
 
-import org.example.nauczycieldesktopapp.controller.StudentListViewController;
-import org.example.nauczycieldesktopapp.model.Grupa;
-
-public class ZarzadzanieGrupamiView {
-
+public class ZarzadzanieTerminamiView {
     private static double xOffset = 0;
     private static double yOffset = 0;
 
     public static void launch(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ZarzadzanieViews/ZarzadzanieGrupami.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ZarzadzanieStudentamiView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ZarzadzanieViews/ZarzadzanieTerminami.fxml"));
         Parent root = fxmlLoader.load();
 
-        Scene scene = new Scene(root);
-
+        // Dragging window logic
         root.setOnMousePressed(mouseEvent -> {
             xOffset = mouseEvent.getSceneX();
             yOffset = mouseEvent.getSceneY();
         });
-
         root.setOnMouseDragged(mouseEvent -> {
             stage.setX(mouseEvent.getScreenX() - xOffset);
             stage.setY(mouseEvent.getScreenY() - yOffset);
         });
 
+        ZarzadzanieTerminamiController controller = fxmlLoader.getController();
+
+        Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Dodaj Studenta");
+        stage.setTitle("Zarządzanie Terminami");
         stage.show();
     }
+
     public static void launchSubList(Grupa grupa) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ListViews/StudentListView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ListViews/TerminListView.fxml"));
         Parent root = fxmlLoader.load();
 
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 800, 400);
         Stage stage = new Stage();
 
         root.setOnMousePressed(mouseEvent -> {
@@ -52,10 +55,10 @@ public class ZarzadzanieGrupamiView {
         });
 
         stage.setScene(scene);
-        stage.setTitle("Lista Studentów Grupy: " + grupa.nazwaProperty().getValue());
+        stage.setTitle("Lista Terminów Grupy: " + grupa.nazwaProperty().getValue());
 
-        StudentListViewController controller = fxmlLoader.getController();
-        controller.setGrupa(grupa);
+        TerminListViewController controller = fxmlLoader.getController();
+        controller.setTerminy(grupa);
 
         stage.show();
     }

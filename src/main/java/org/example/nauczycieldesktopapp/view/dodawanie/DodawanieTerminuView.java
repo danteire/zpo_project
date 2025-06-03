@@ -1,10 +1,10 @@
-package org.example.nauczycieldesktopapp.view;
+package org.example.nauczycieldesktopapp.view.dodawanie;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.example.nauczycieldesktopapp.controller.DodawanieTerminuController;
+import org.example.nauczycieldesktopapp.controller.dodawanie.DodawanieTerminuController;
 import org.example.nauczycieldesktopapp.model.Termin;
 
 
