@@ -1,8 +1,10 @@
 package org.example.listaobecnosci.service;
 
+import jakarta.transaction.Transactional;
 import org.example.listaobecnosci.Grupa;
 import org.example.listaobecnosci.Termin;
 import org.example.listaobecnosci.repository.TerminRepository;
+import org.example.listaobecnosci.repository.ObecnoscRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +26,8 @@ import java.util.Optional;
 public class TerminService {
 
     private final TerminRepository terminRepository;
+    private final ObecnoscRepository obecnoscRepository;
+
     private final GrupaService grupaService;
 
     /**
@@ -32,8 +36,9 @@ public class TerminService {
      * @param terminRepository repozytorium terminów
      * @param grupaService serwis zarządzający grupami
      */
-    public TerminService(TerminRepository terminRepository, GrupaService grupaService) {
+    public TerminService(TerminRepository terminRepository, ObecnoscRepository obecnoscRepository, GrupaService grupaService) {
         this.terminRepository = terminRepository;
+        this.obecnoscRepository = obecnoscRepository;
         this.grupaService = grupaService;
     }
 
@@ -78,11 +83,20 @@ public class TerminService {
     }
 
     /**
-     * Usuwa termin o podanym identyfikatorze.
+     * Usuwa termin o podanym identyfikatorze wraz ze wszystkimi powiązanymi obecnościami.
+     *
+     * Metoda najpierw usuwa wszystkie obecności powiązane z terminem o podanym {@code id},
+     * aby zachować integralność danych i uniknąć błędów związanych z kluczami obcymi,
+     * a następnie usuwa sam termin z bazy danych.
+     *
+     * Operacja jest oznaczona jako transakcyjna, co zapewnia spójność i atomowość usunięcia
+     * zarówno obecności, jak i terminu — w przypadku błędu obie zmiany zostaną wycofane.
      *
      * @param id identyfikator terminu do usunięcia
      */
+    @Transactional
     public void deleteTermin(Long id) {
+        obecnoscRepository.deleteByTerminId(id);
         terminRepository.deleteById(id);
     }
 

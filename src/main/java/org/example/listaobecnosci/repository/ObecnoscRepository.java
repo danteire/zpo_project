@@ -72,4 +72,14 @@ public interface ObecnoscRepository extends JpaRepository<Obecnosc, Long> {
      * @return lista obecności spełniających oba warunki
      */
     List<Obecnosc> findByStudentIdAndTerminId(Long studentId, Long terminId);
+
+    /**
+     * Usuwa wszystkie encje powiązane z danym terminem na podstawie jego identyfikatora.
+     *
+     * Metoda usuwa wszystkie rekordy (np. obecności), które są powiązane
+     * z terminem o podanym identyfikatorze {@code terminId}.
+     *
+     * @param terminId identyfikator terminu, którego powiązane encje mają zostać usunięte
+     */
+    void deleteByTerminId(Long terminId);
 }
