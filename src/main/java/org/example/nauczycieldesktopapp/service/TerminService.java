@@ -1,9 +1,12 @@
 package org.example.nauczycieldesktopapp.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.example.nauczycieldesktopapp.model.Obecnosc;
+import org.example.nauczycieldesktopapp.model.Status;
 import org.example.nauczycieldesktopapp.model.Student;
 import org.example.nauczycieldesktopapp.model.Termin;
 
@@ -55,8 +58,9 @@ public class TerminService {
 
     public boolean addTermin(Termin termin) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-
-
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        mapper.disable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
 
         Map<String, Object> dane = new HashMap<>();
         dane.put("data", termin.getData().toString());
@@ -82,9 +86,36 @@ public class TerminService {
         }
 
         int status = con.getResponseCode();
-        con.disconnect();
+        if (status == 200 || status == 201) {
+            Scanner scanner = new Scanner(con.getInputStream());
+            StringBuilder responseJson = new StringBuilder();
+            while (scanner.hasNextLine()) {
+                responseJson.append(scanner.nextLine());
+            }
+            scanner.close();
 
-        return status == 200;
+            Termin savedTermin = mapper.readValue(responseJson.toString(), Termin.class);
+            dodajObecnosciDlaTerminu(savedTermin);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void dodajObecnosciDlaTerminu(Termin savedTermin) throws IOException {
+        StudentService studentService = new StudentService();
+        ObecnoscService obecnoscService = new ObecnoscService();
+
+        List<Student> studenci = studentService.getStudentsByGrupa(savedTermin.getGrupa().getId());
+
+        for (Student student : studenci) {
+            Obecnosc obecnosc = new Obecnosc();
+            obecnosc.setStatus(Status.BRAK);
+            obecnosc.setStudentId(student.getId());
+            obecnosc.setTerminID(savedTermin.getId());
+
+            obecnoscService.sendObecnosc(obecnosc);
+        }
     }
 
     public List<Termin> getTerminByGrupa(Long id) throws IOException {
