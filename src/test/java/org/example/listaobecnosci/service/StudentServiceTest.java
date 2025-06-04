@@ -38,6 +38,34 @@ class StudentServiceTest {
     }
 
     @Test
+    void shouldReturnStudentByNrIndeksu() {
+        String nrIndeksu = "123456";
+        Student student = new Student();
+        student.setNrIndeksu(nrIndeksu);
+
+        when(studentRepository.findByNrIndeksu(nrIndeksu)).thenReturn(Optional.of(student));
+
+        Optional<Student> result = studentService.getStudentByNrIndeksu(nrIndeksu);
+
+        assertTrue(result.isPresent());
+        assertEquals(nrIndeksu, result.get().getNrIndeksu());
+        verify(studentRepository).findByNrIndeksu(nrIndeksu);
+    }
+
+    @Test
+    void shouldReturnEmptyWhenStudentByNrIndeksuNotFound() {
+        String nrIndeksu = "654321";
+
+        when(studentRepository.findByNrIndeksu(nrIndeksu)).thenReturn(Optional.empty());
+
+        Optional<Student> result = studentService.getStudentByNrIndeksu(nrIndeksu);
+
+        assertTrue(result.isEmpty());
+        verify(studentRepository).findByNrIndeksu(nrIndeksu);
+    }
+
+
+    @Test
     void shouldAssignStudentToGrupa() {
         Student student = new Student();
         student.setId(1L);

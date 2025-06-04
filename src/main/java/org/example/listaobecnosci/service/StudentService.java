@@ -68,6 +68,16 @@ public class StudentService {
     }
 
     /**
+     * Pobiera studenta po numerze indeksu.
+     *
+     * @param nrIndeksu numer indeksu studenta
+     * @return opcjonalny obiekt {@link Student}
+     */
+    public Optional<Student> getStudentByNrIndeksu(String nrIndeksu) {
+        return studentRepository.findByNrIndeksu(nrIndeksu);
+    }
+
+    /**
      * Zapisuje nowego studenta lub aktualizuje istniejącego.
      *
      * @param student obiekt studenta do zapisania

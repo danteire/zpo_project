@@ -74,4 +74,39 @@ class StudentControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.imie").value("Anna"));
     }
+
+    @Test
+    void shouldReturnStudentByNrIndeksu() throws Exception {
+        Student student = new Student();
+        student.setId(1L);
+        student.setNrIndeksu("123456");
+        student.setImie("Marek");
+        student.setNazwisko("Nowak");
+
+        when(studentService.getStudentByNrIndeksu("123456")).thenReturn(Optional.of(student));
+
+        mockMvc.perform(get("/students/indeks/123456"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nrIndeksu").value("123456"))
+                .andExpect(jsonPath("$.imie").value("Marek"))
+                .andExpect(jsonPath("$.nazwisko").value("Nowak"));
+    }
+
+    @Test
+    void shouldReturnNotFoundForUnknownNrIndeksu() throws Exception {
+        when(studentService.getStudentByNrIndeksu("999999")).thenReturn(Optional.empty());
+
+        mockMvc.perform(get("/students/nrIndeksu/999999"))
+                .andExpect(status().isNotFound());
+    }
+
+
+    @Test
+    void shouldReturnNotFoundWhenStudentNotFound() throws Exception {
+        when(studentService.getStudentById(999L)).thenReturn(Optional.empty());
+
+        mockMvc.perform(get("/students/999"))
+                .andExpect(status().isNotFound());
+    }
+
 }

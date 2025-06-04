@@ -63,6 +63,20 @@ public class StudentController {
     }
 
     /**
+     * Pobiera studenta na podstawie numeru indeksu.
+     *
+     * @param nrIndeksu numer indeksu studenta
+     * @return odpowiedź HTTP z obiektem studenta lub 404, jeśli nie znaleziono
+     */
+    @GetMapping("/indeks/{nrIndeksu}")
+    public ResponseEntity<Student> getStudentByNrIndeksu(@PathVariable String nrIndeksu) {
+        return studentService.getStudentByNrIndeksu(nrIndeksu)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+
+    /**
      * Dodaje nowego studenta.
      *
      * @param student obiekt studenta do dodania
