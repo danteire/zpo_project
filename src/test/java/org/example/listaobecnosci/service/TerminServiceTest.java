@@ -2,6 +2,8 @@ package org.example.listaobecnosci.service;
 
 import org.example.listaobecnosci.Grupa;
 import org.example.listaobecnosci.Termin;
+import org.example.listaobecnosci.repository.ObecnoscRepository;
+import org.example.listaobecnosci.repository.ObecnoscRepositoryTest;
 import org.example.listaobecnosci.repository.TerminRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -21,6 +23,9 @@ class TerminServiceTest {
 
     @Mock
     private TerminRepository terminRepository;
+
+    @Mock
+    private ObecnoscRepository obecnoscRepository;
 
     @Mock
     private GrupaService grupaService;
@@ -107,4 +112,45 @@ class TerminServiceTest {
         assertThat(result.getGrupa()).isEqualTo(grupa);
         verify(terminRepository).save(termin);
     }
+
+    @Test
+    void shouldReturnTerminyByGrupaIdWhenGroupExists() {
+        Grupa grupa = new Grupa();
+        grupa.setId(1L);
+        List<Termin> terminy = List.of(new Termin(), new Termin());
+
+        when(grupaService.getGrupaById(1L)).thenReturn(Optional.of(grupa));
+        when(terminRepository.findByGrupa(grupa)).thenReturn(terminy);
+
+        List<Termin> result = terminService.getTerminByGrupaId(1L);
+
+        assertThat(result).hasSize(2);
+        verify(grupaService).getGrupaById(1L);
+        verify(terminRepository).findByGrupa(grupa);
+    }
+
+    @Test
+    void shouldReturnEmptyListWhenGroupDoesNotExist() {
+        when(grupaService.getGrupaById(2L)).thenReturn(Optional.empty());
+
+        List<Termin> result = terminService.getTerminByGrupaId(2L);
+
+        assertThat(result).isEmpty();
+        verify(grupaService).getGrupaById(2L);
+        verify(terminRepository, never()).findByGrupa(any());
+    }
+
+    @Test
+    void shouldDeleteTerminAndObecnosci() {
+        Long terminId = 3L;
+
+        doNothing().when(obecnoscRepository).deleteByTerminId(terminId);
+        doNothing().when(terminRepository).deleteById(terminId);
+
+        terminService.deleteTermin(terminId);
+
+        verify(obecnoscRepository).deleteByTerminId(terminId);
+        verify(terminRepository).deleteById(terminId);
+    }
+
 }

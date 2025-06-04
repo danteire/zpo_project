@@ -131,4 +131,15 @@ class ObecnoscControllerTest {
         assertEquals(1, result.size());
         verify(obecnoscService).getByStudentIdAndTerminId(1L, 2L);
     }
+
+    @Test
+    void shouldDeleteByTerminId() {
+        doNothing().when(obecnoscService).deleteByTerminId(5L);
+
+        ResponseEntity<Void> response = obecnoscController.deleteByTerminId(5L);
+
+        assertTrue(response.getStatusCode().is2xxSuccessful());
+        verify(obecnoscService).deleteByTerminId(5L);
+    }
+
 }
