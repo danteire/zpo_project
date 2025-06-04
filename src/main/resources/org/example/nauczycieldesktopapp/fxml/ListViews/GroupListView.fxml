@@ -10,9 +10,9 @@
             fx:controller="org.example.nauczycieldesktopapp.controller.listsViews.GroupListViewController">
     <TableView fx:id="groupTable" prefWidth="580.0" prefHeight="380.0" layoutX="10" layoutY="10">
         <columns>
-            <TableColumn fx:id="idColumn" text="ID" prefWidth="200"/>
-            <TableColumn fx:id="nazwaColumn" text="Nazwa Grupy" prefWidth="200"/>
-            <TableColumn fx:id="addColumn" text="Wybierz" prefWidth="200"/>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="30"/>
+            <TableColumn fx:id="nazwaColumn" text="Nazwa Grupy" prefWidth="150"/>
+            <TableColumn fx:id="addColumn" text="Wybierz" prefWidth="70"/>
         </columns>
     </TableView>
 </AnchorPane>

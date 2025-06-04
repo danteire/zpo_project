@@ -75,11 +75,11 @@
                        AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                        AnchorPane.topAnchor="34.0">
                 <columns>
-                    <TableColumn fx:id="imieColumn" prefWidth="75.0" text="imie"/>
-                    <TableColumn fx:id="nazwiskoColumn" prefWidth="75.0" text="nazwisko"/>
-                    <TableColumn fx:id="indeksColumn" prefWidth="75.0" text="indeks"/>
-                    <TableColumn fx:id="grupaColumn" prefWidth="75.0" text="Grupa" />
-                    <TableColumn fx:id="deleteColumn" prefWidth="75.0" text="usun"/>
+                    <TableColumn fx:id="imieColumn" prefWidth="75.0" text="Imie"/>
+                    <TableColumn fx:id="nazwiskoColumn" prefWidth="80.0" text="Nazwisko"/>
+                    <TableColumn fx:id="indeksColumn" prefWidth="75.0" text="Indeks"/>
+                    <TableColumn fx:id="grupaColumn" prefWidth="180.0" text="Grupa" />
+                    <TableColumn fx:id="deleteColumn" prefWidth="50.0" text="Usuń"/>
                 </columns>
             </TableView>
         </AnchorPane>

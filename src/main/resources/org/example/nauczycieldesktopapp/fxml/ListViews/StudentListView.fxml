@@ -10,10 +10,10 @@
             fx:controller="org.example.nauczycieldesktopapp.controller.listsViews.StudentListViewController">
     <TableView fx:id="studentTable" prefWidth="580.0" prefHeight="380.0" layoutX="10" layoutY="10">
         <columns>
-            <TableColumn fx:id="imieColumn" text="Imię" prefWidth="200"/>
-            <TableColumn fx:id="nazwiskoColumn" text="Nazwisko" prefWidth="200"/>
-            <TableColumn fx:id="nrIndeksuColumn" text="nr indeksu" prefWidth="200"/>
-            <TableColumn fx:id="deleteStudentColumn" text="Usuń z grupy" prefWidth="200"/>
+            <TableColumn fx:id="imieColumn" text="Imię" prefWidth="75"/>
+            <TableColumn fx:id="nazwiskoColumn" text="Nazwisko" prefWidth="80"/>
+            <TableColumn fx:id="nrIndeksuColumn" text="Indeks" prefWidth="80"/>
+            <TableColumn fx:id="deleteStudentColumn" text="Usuń" prefWidth="100"/>
         </columns>
     </TableView>
 </AnchorPane>
