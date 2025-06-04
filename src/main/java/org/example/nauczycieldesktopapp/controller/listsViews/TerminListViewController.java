@@ -12,6 +12,7 @@ import javafx.util.Callback;
 import org.example.nauczycieldesktopapp.model.Grupa;
 import org.example.nauczycieldesktopapp.model.Termin;
 import org.example.nauczycieldesktopapp.service.TerminService;
+import org.example.nauczycieldesktopapp.view.zarzadzanie.ZarzadzanieObecnosciamiView;
 
 import java.io.IOException;
 import java.util.List;
@@ -37,7 +38,7 @@ public class TerminListViewController {
     public void initialize() {
         idColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getId()).asString());
         dateColumn.setCellValueFactory(cellData -> cellData.getValue().dataProperty());
-
+        checkTerminButton();
         usunTerminButton();
     }
 
@@ -74,6 +75,26 @@ public class TerminListViewController {
         deleteColumn.setCellFactory(cellFactory);
     }
     private void checkTerminButton() {
+        Callback<TableColumn<Termin, Void>, TableCell<Termin, Void>> cellFactory = param -> new TableCell<>() {
+            private final Button btn = new Button("Sprawdź Obecność");
 
+            {
+                btn.setOnAction(event -> {
+                    Termin termin = getTableView().getItems().get(getIndex());
+                    try {
+                        ZarzadzanieObecnosciamiView.launch(termin);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : btn);
+            }
+        };
+        checkColumn.setCellFactory(cellFactory);
     }
 }

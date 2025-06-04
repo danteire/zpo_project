@@ -89,26 +89,18 @@ public class ZarzadzanieObecnosciamiController extends MainMenuController {
                     private final CheckBox checkBox = new CheckBox();
 
                     {
-                        checkBox.selectedProperty().addListener((obs, wasSelected, isNowSelected) -> {
-                            if (isNowSelected) {
-                                Obecnosc ob = getTableView().getItems().get(getIndex());
+                        checkBox.setOnAction(event -> {
+                            Obecnosc ob = getTableView().getItems().get(getIndex());
+                            if (checkBox.isSelected()) {
                                 ob.setStatus(status);
-                                uncheckOtherBoxes(ob);
                                 obecnosciTable.refresh();
                             } else {
-                                Obecnosc ob = getTableView().getItems().get(getIndex());
-                                if (status.equals(ob.getStatus())) {
+                                if (ob.getStatus() == status) {
                                     ob.setStatus(null);
                                 }
+                                obecnosciTable.refresh();
                             }
                         });
-                    }
-
-                    private void uncheckOtherBoxes(Obecnosc obecnosc) {
-                        // this forces single selection by updating table
-                        for (Obecnosc ob : obecnosciData) {
-                            if (ob == obecnosc) continue;
-                        }
                     }
 
                     @Override
@@ -129,13 +121,24 @@ public class ZarzadzanieObecnosciamiController extends MainMenuController {
 
     @FXML
     public void wyslijObecnosci() {
+        List<Obecnosc> doWyslania = new ArrayList<>();
         for (Obecnosc ob : obecnosciData) {
             if (ob.getStatus() != null) {
-                try {
-                    obecnosciService.sendObecnosc(ob);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                doWyslania.add(ob);
+            }
+        }
+
+        if (doWyslania.size() != obecnosciData.size()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Nie wszyscy studenci mają zaznaczoną obecność!", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
+
+        for (Obecnosc ob : doWyslania) {
+            try {
+                obecnosciService.sendObecnosc(ob);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

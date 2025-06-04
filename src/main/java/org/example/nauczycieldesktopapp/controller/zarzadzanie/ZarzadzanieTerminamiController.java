@@ -69,7 +69,6 @@ public class ZarzadzanieTerminamiController extends MainMenuController {
                     Termin termin = new Termin();
                     termin.setGrupa(grupa);
                     try {
-                        //TODO: utworzyć okienko
                         DodawanieTerminuView.launch(termin);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
