@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.stage.Stage;
 import org.example.nauczycieldesktopapp.controller.MainMenuController;
 import org.example.nauczycieldesktopapp.model.*;
 import org.example.nauczycieldesktopapp.service.ObecnoscService;
@@ -40,6 +41,8 @@ public class ZarzadzanieObecnosciamiController extends MainMenuController {
 
     private Termin termin;
 
+    private Stage stage;
+
     public void setTermin(Termin termin) {
         this.termin = termin;
     }
@@ -50,6 +53,10 @@ public class ZarzadzanieObecnosciamiController extends MainMenuController {
         for (Student s : students) {
             studenci.add(new StudentObecnoscRow(s));
         }
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
     public static class StudentObecnoscRow {
@@ -170,5 +177,8 @@ public class ZarzadzanieObecnosciamiController extends MainMenuController {
                 new Alert(Alert.AlertType.ERROR, "Błąd podczas wysyłania danych").show();
             }
         });
+
+        stage.close();
+
     }
 }

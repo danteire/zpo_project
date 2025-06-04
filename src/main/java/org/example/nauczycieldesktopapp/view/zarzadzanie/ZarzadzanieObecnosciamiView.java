@@ -20,7 +20,7 @@ public class ZarzadzanieObecnosciamiView {
         FXMLLoader fxmlLoader = new FXMLLoader(ZarzadzanieStudentamiView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ZarzadzanieViews/ZarzadzanieObecnosciami.fxml"));
         Parent root = fxmlLoader.load();
 
-        Scene scene = new Scene(root, 800, 400);
+        Scene scene = new Scene(root, 470, 460);
         Stage stage = new Stage();
 
         root.setOnMousePressed(mouseEvent -> {
@@ -39,6 +39,7 @@ public class ZarzadzanieObecnosciamiView {
         ZarzadzanieObecnosciamiController controller = fxmlLoader.getController();
         controller.setTermin(termin);
         controller.setStudents(termin);
+        controller.setStage(stage);
         stage.show();
     }
 
