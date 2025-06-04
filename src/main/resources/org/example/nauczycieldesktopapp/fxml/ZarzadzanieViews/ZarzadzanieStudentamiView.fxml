@@ -4,16 +4,64 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.nauczycieldesktopapp.controller.zarzadzanie.ZarzadzanieStudentamiController">
     <left>
         <AnchorPane prefHeight="700.0" prefWidth="490.0" style="-fx-background-color: #0090FE;" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="ZStud" disable="true" layoutX="74.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleZarzadzanieStudentami" text="Zarządzanie Studentami" />
-                <Button fx:id="ZGrup" onAction="#handleZarzadanieGrupami" layoutX="324.0" layoutY="164.0" mnemonicParsing="false" text="Zarządzanie Grupami" />
-                <Button fx:id="DodajGrupe" layoutX="82.0" layoutY="289.0" mnemonicParsing="false" text="Dodaj grupę" onAction="#handleDodajGrupe"/>
-                <Button fx:id="DodStud" layoutX="317.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleDodajStudenta" text="Dodaj Studenta" />
-                <Button fx:id="DzOb" onAction="#handleZarzadzanieTerminami" layoutX="48.0" layoutY="420.0" mnemonicParsing="false" text="Zarządzanie Terminami" />
-                <Button fx:id="PodsObec" layoutX="305.0" layoutY="420.0" mnemonicParsing="false" text="Dodaj Termin" />
+                <VBox layoutX="125.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="250.0" AnchorPane.topAnchor="50.0">
+                    <children>
+                        <Button fx:id="ZStud" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleZarzadzanieStudentami" prefHeight="125.0" style="-fx-background-color: #ffffff; -fx-background-radius: 6; -fx-border-radius: 6; -fx-border-color: #2c5aa0; -fx-border-width: 2; -fx-cursor: hand;" stylesheets="@../style.css" text="Zarządzanie Studentami" textAlignment="CENTER" textFill="#2c5aa0" wrapText="true" VBox.vgrow="ALWAYS">
+                            <VBox.margin>
+                                <Insets top="3.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font name="Arial Black" size="20.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="DodStud" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleDodajStudenta" prefHeight="125.0" style="-fx-background-color: #ffffff; -fx-background-radius: 6; -fx-border-radius: 6; -fx-border-color: #2c5aa0; -fx-border-width: 2; -fx-cursor: hand;" stylesheets="@../style.css" text="Dodaj Studenta" textAlignment="CENTER" textFill="#2c5aa0" wrapText="true" VBox.vgrow="ALWAYS">
+                            <VBox.margin>
+                                <Insets top="3.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font name="Arial Black" size="20.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="ZGrup" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleZarzadanieGrupami" prefHeight="125.0" style="-fx-background-color: #ffffff; -fx-background-radius: 6; -fx-border-radius: 6; -fx-border-color: #2c5aa0; -fx-border-width: 2; -fx-cursor: hand;" stylesheets="@../style.css" text="Zarządzanie Grupami" textAlignment="CENTER" textFill="#2c5aa0" wrapText="true" VBox.vgrow="ALWAYS">
+                            <VBox.margin>
+                                <Insets top="3.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font name="Arial Black" size="20.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="DodajGrupe" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleDodajGrupe" prefHeight="125.0" style="-fx-background-color: #ffffff; -fx-background-radius: 6; -fx-border-radius: 6; -fx-border-color: #2c5aa0; -fx-border-width: 2; -fx-cursor: hand;" stylesheets="@../style.css" text="Dodaj grupę" textAlignment="CENTER" textFill="#2c5aa0" wrapText="true" VBox.vgrow="ALWAYS">
+                            <VBox.margin>
+                                <Insets top="3.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font name="Arial Black" size="20.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="DzOb" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleZarzadzanieTerminami" prefHeight="125.0" style="-fx-background-color: #ffffff; -fx-background-radius: 6; -fx-border-radius: 6; -fx-border-color: #2c5aa0; -fx-border-width: 2; -fx-cursor: hand;" stylesheets="@../style.css" text="Zarządzanie Terminami" textAlignment="CENTER" textFill="#2c5aa0" wrapText="true" VBox.vgrow="ALWAYS">
+                            <VBox.margin>
+                                <Insets top="3.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font name="Arial Black" size="20.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="PodsObec" onAction="#handleSprawdzObecnosci" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="125.0" style="-fx-background-color: #ffffff; -fx-background-radius: 6; -fx-border-radius: 6; -fx-border-color: #2c5aa0; -fx-border-width: 2; -fx-cursor: hand;" stylesheets="@../style.css" text="Sprawdź Obecności" textAlignment="CENTER" textFill="#2c5aa0" wrapText="true" VBox.vgrow="ALWAYS">
+                            <VBox.margin>
+                                <Insets top="3.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font name="Arial Black" size="20.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
             </children>
         </AnchorPane>
     </left>

@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.example.nauczycieldesktopapp.view.SprawdzObecnosciView;
 import org.example.nauczycieldesktopapp.view.dodawanie.DodawanieGrupyView;
 import org.example.nauczycieldesktopapp.view.dodawanie.DodawanieStudentaView;
 import org.example.nauczycieldesktopapp.view.zarzadzanie.ZarzadzanieGrupamiView;
@@ -67,6 +68,13 @@ public class MainMenuController {
         System.out.println("Zarządzenie Terminami Clicked");
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         ZarzadzanieTerminamiView.launch(stage);
+    }
+
+    @FXML
+    public void handleSprawdzObecnosci(ActionEvent event) throws IOException {
+        System.out.println("Sprawdź Obecnosci Clicked");
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        SprawdzObecnosciView.launch(stage);
     }
 }
 
