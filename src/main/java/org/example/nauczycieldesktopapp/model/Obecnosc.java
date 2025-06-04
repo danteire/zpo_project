@@ -11,8 +11,18 @@ public class Obecnosc {
     private Status status;
     private Long studentId;
     private Long terminID;
+    private Student student;
+
 
     private transient StringProperty statusProperty;
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
     public StringProperty statusProperty() {
         if (statusProperty == null) statusProperty = new SimpleStringProperty(status.toString());

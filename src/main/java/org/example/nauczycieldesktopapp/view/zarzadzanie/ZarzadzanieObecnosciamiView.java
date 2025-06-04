@@ -17,7 +17,7 @@ public class ZarzadzanieObecnosciamiView {
     private static double yOffset = 0;
 
     public static void launch(Termin termin) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ZarzadzanieGrupamiView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ListViews/ZarzadzanieObecnosciami.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ZarzadzanieStudentamiView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ZarzadzanieViews/ZarzadzanieObecnosciami.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root, 800, 400);
@@ -37,10 +37,8 @@ public class ZarzadzanieObecnosciamiView {
         stage.setTitle("Lista Obecności dla terminu: " + termin.dataProperty().getValue());
 
         ZarzadzanieObecnosciamiController controller = fxmlLoader.getController();
-
         controller.setTermin(termin);
-        controller.setStudents();
-
+        controller.setStudents(termin);
         stage.show();
     }
 
