@@ -60,7 +60,7 @@ public class ZarzadzanieTerminamiController extends MainMenuController {
 
     private void addButtonTable() {
         Callback<TableColumn<Grupa, Void>, TableCell<Grupa, Void>> cellFactory = param -> new TableCell<>() {
-            private final Button btn = new Button("Dodaj");
+            private final Button btn = new Button("Dodaj termin");
 
             {
                 btn.setOnAction(event -> {

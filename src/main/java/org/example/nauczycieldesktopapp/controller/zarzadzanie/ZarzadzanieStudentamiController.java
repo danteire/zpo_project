@@ -77,7 +77,7 @@ public class ZarzadzanieStudentamiController extends MainMenuController {
     private void checkAndPrintGroupColumn(){
         Callback<TableColumn<Student, Void>, TableCell<Student, Void>> cellFactory = param -> new TableCell<>() {
 
-            private final Button assignButton = new Button("Przypisz");
+            private final Button assignButton = new Button("Przypisz do grupy");
 
             {
                 assignButton.setOnAction(event -> {

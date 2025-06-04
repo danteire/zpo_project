@@ -81,9 +81,9 @@
             <TableView fx:id="groupTable" layoutX="145.0" layoutY="34.0" prefHeight="666.0" prefWidth="490.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="34.0">
                 <columns>
                     <TableColumn fx:id="idColumn" maxWidth="50" prefWidth="50.0" text="ID" />
-                    <TableColumn fx:id="nameColumn" maxWidth="200.0" prefWidth="100.0" text="Nazwa grupy" />
+                    <TableColumn fx:id="nameColumn" maxWidth="200.0" prefWidth="170" text="Nazwa grupy" />
                     <TableColumn fx:id="listaBtnColumn" maxWidth="500.0" minWidth="0.0" prefWidth="100" text="Lista Terminów" />
-                    <TableColumn fx:id="addColumn" prefWidth="100.0" text="Dodaj" />
+                    <TableColumn fx:id="addColumn" prefWidth="95" text="Dodaj" />
                 </columns>
             </TableView>
         </AnchorPane>

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
 <?import javafx.geometry.Insets?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.nauczycieldesktopapp.controller.dodawanie.DodawanieStudentaController">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.nauczycieldesktopapp.controller.dodawanie.DodawanieStudentaController">
     <left>
         <AnchorPane prefHeight="700.0" prefWidth="490.0" style="-fx-background-color: #0090FE;" BorderPane.alignment="CENTER">
             <children>
@@ -52,7 +54,7 @@
                                 <Font name="Arial Black" size="20.0" />
                             </font>
                         </Button>
-                        <Button fx:id="PodsObec" onAction="#handleSprawdzObecnosci" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="125.0" style="-fx-background-color: #ffffff; -fx-background-radius: 6; -fx-border-radius: 6; -fx-border-color: #2c5aa0; -fx-border-width: 2; -fx-cursor: hand;" stylesheets="@../style.css" text="Sprawdź Obecności" textAlignment="CENTER" textFill="#2c5aa0" wrapText="true" VBox.vgrow="ALWAYS">
+                        <Button fx:id="PodsObec" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleSprawdzObecnosci" prefHeight="125.0" style="-fx-background-color: #ffffff; -fx-background-radius: 6; -fx-border-radius: 6; -fx-border-color: #2c5aa0; -fx-border-width: 2; -fx-cursor: hand;" stylesheets="@../style.css" text="Sprawdź Obecności" textAlignment="CENTER" textFill="#2c5aa0" wrapText="true" VBox.vgrow="ALWAYS">
                             <VBox.margin>
                                 <Insets top="3.0" />
                             </VBox.margin>
@@ -68,19 +70,26 @@
     <right>
         <AnchorPane fx:id="rightAP" prefHeight="200.0" prefWidth="490.0" BorderPane.alignment="CENTER">
             <children>
-                <ImageView fx:id="closeIcon" fitHeight="44.0" fitWidth="33.0" layoutX="457.0"
-                           onMouseClicked="#handleClose" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../../images/close.png"/>
+                <ImageView fx:id="closeIcon" fitHeight="44.0" fitWidth="33.0" layoutX="457.0" onMouseClicked="#handleClose" pickOnBounds="true" preserveRatio="true">
+                   <image>
+                       <Image url="@../../images/close.png" />
+                   </image>
                 </ImageView>
                 <VBox alignment="CENTER" layoutX="95.0" layoutY="250.0" prefHeight="220.0" prefWidth="307.0" spacing="10">
-
-                    <TextField fx:id="imieField" prefHeight="40.0" prefWidth="307.0" promptText="Imię" />
-                    <TextField fx:id="nazwiskoField" prefHeight="40.0" prefWidth="307.0" promptText="Nazwisko" />
-                    <TextField fx:id="indeksField" prefHeight="40.0" promptText="Nr indeksu" />
-
-                    <Button onAction="#handleDodawanieStudenta" style="-fx-background-color: transparent; -fx-border-color: #123456; -fx-border-width: 0px 0px 2px 0px;" text="Dodaj studenta" />
+                   <children>
+   
+                       <TextField fx:id="imieField" prefHeight="40.0" prefWidth="307.0" promptText="Imię" />
+                       <TextField fx:id="nazwiskoField" prefHeight="40.0" prefWidth="307.0" promptText="Nazwisko" />
+                       <TextField fx:id="indeksField" prefHeight="40.0" promptText="Nr indeksu" />
+   
+                       <Button onAction="#handleDodawanieStudenta" style="-fx-background-color: transparent; -fx-border-color: #123456; -fx-border-width: 0px 0px 2px 0px;" text="Dodaj studenta">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                   </children>
                 </VBox>
-                <Text layoutX="27.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wprowadź Dane Nowego Studenta">
+                <Text layoutX="159.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dane studenta">
                     <font>
                         <Font size="28.0" />
                     </font>
