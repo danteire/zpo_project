@@ -60,26 +60,6 @@ public class ObecnoscService {
     }
 
 
-    public List<Obecnosc> getAllObecnosci(Termin termin) throws IOException {
-        String url = "http://3.71.11.3:8080/obecnosci/termin/" + termin.getId();
-        URL endpoint = new URL(url);
-        HttpURLConnection conn = (HttpURLConnection) endpoint.openConnection();
-        conn.setRequestMethod("GET");
-
-        Scanner scanner = new Scanner(conn.getInputStream());
-        StringBuilder json = new StringBuilder();
-        while (scanner.hasNextLine()) {
-            json.append(scanner.nextLine());
-        }
-        scanner.close();
-
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(json.toString(), new TypeReference<>() {});
-    }
-
-
-    //TODO: sprawdź czy jest termin dla obecności - jak styknie czas XDDDDDDDDD
-
     public boolean deletObecnosc(Obecnosc obecnosc) throws IOException {
         try {
             String restURL = "http://3.71.11.3:8080/obecnosci";
@@ -95,5 +75,38 @@ public class ObecnoscService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public boolean deleteObecnoscByTermin(Termin termin) throws IOException {
+        try {
+            String restURL = "http://3.71.11.3:8080/obecnosci/termin";
+            URL url = new URL(restURL + "/" + termin.getId());
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("DELETE");
+
+            int responseCode = connection.getResponseCode();
+            connection.disconnect();
+            return responseCode == HttpURLConnection.HTTP_OK || responseCode == HttpURLConnection.HTTP_NO_CONTENT;
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    //obecnosci/termin/(terminID)
+    public List<Obecnosc> getObecnosciByTermin(Termin termin) throws IOException {
+        String url = "http://3.71.11.3:8080/obecnosci/termin/" + termin.getId();
+        URL endpoint = new URL(url);
+        HttpURLConnection conn = (HttpURLConnection) endpoint.openConnection();
+        conn.setRequestMethod("GET");
+
+        Scanner scanner = new Scanner(conn.getInputStream());
+        StringBuilder json = new StringBuilder();
+        while (scanner.hasNextLine()) {
+            json.append(scanner.nextLine());
+        }
+        scanner.close();
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(json.toString(), new TypeReference<>() {});
     }
 }

@@ -121,11 +121,14 @@ public class ZarzadzanieObecnosciamiController extends MainMenuController {
     }
 
     @FXML
-    private void handleWyslij(ActionEvent event) {
+    private void handleWyslij(ActionEvent event) throws IOException {
+
         if (termin == null) {
             System.err.println("Termin nie został ustawiony!");
             return;
         }
+
+        obecnoscService.deleteObecnoscByTermin(termin);
 
         List<Obecnosc> obecnosci = new ArrayList<>();
 
