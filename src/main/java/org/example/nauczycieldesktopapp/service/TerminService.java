@@ -22,6 +22,7 @@ import java.util.Scanner;
 //GET http://3.71.11.3:8080/terminy
 
 public class TerminService {
+
     public List<Termin> getAllTermins() throws IOException {
         String url = "http://3.71.11.3:8080/terminy";
         URL endpoint = new URL(url);
@@ -35,7 +36,11 @@ public class TerminService {
         }
         scanner.close();
 
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper()
+                .registerModule(new JavaTimeModule())
+                .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        System.out.println(json.toString());
+
         return mapper.readValue(json.toString(), new TypeReference<>() {});
     }
 

@@ -85,6 +85,14 @@
                         <Image url="@../../images/close.png" />
                     </image>
                 </ImageView>
+                <TableView fx:id="obecnosciTable" layoutX="145.0" layoutY="34.0" prefHeight="666.0" prefWidth="490.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="34.0">
+                    <columns>
+                        <TableColumn fx:id="idColumn" maxWidth="50" prefWidth="50.0" text="ID" />
+                        <TableColumn fx:id="dateColumn" text="Data" />
+                        <TableColumn fx:id="nameColumn" maxWidth="200" prefWidth="130.0" text="Nazwa grupy" />
+                        <TableColumn fx:id="genBtnColumn" maxWidth="400" minWidth="0.0" prefWidth="115" text="Podsumuj" />
+                    </columns>
+                </TableView>
             </children>
         </AnchorPane>
     </right>

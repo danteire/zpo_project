@@ -7,12 +7,22 @@ import org.example.nauczycieldesktopapp.service.StudentService;
 import java.io.IOException;
 
 public class Obecnosc {
+
     private Long id;
     private Status status;
     private Long studentId;
     private Long terminID;
-    private Student student;
 
+    private Student student;
+    private Termin termin;
+
+    public Termin getTermin() {
+        return termin;
+    }
+
+    public void setTermin(Termin termin) {
+        this.termin = termin;
+    }
 
     private transient StringProperty statusProperty;
 

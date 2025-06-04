@@ -3,6 +3,8 @@ package org.example.nauczycieldesktopapp.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.example.nauczycieldesktopapp.model.Obecnosc;
 import org.example.nauczycieldesktopapp.model.Status;
 import org.example.nauczycieldesktopapp.model.Termin;
@@ -106,7 +108,10 @@ public class ObecnoscService {
             json.append(scanner.nextLine());
         }
         scanner.close();
-        ObjectMapper mapper = new ObjectMapper();
+
+        ObjectMapper mapper = new ObjectMapper()
+                .registerModule(new JavaTimeModule())
+                .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         return mapper.readValue(json.toString(), new TypeReference<>() {});
     }
 }

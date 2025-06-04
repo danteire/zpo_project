@@ -11,89 +11,68 @@ import javafx.scene.control.TableView;
 import javafx.util.Callback;
 import org.example.nauczycieldesktopapp.controller.MainMenuController;
 import org.example.nauczycieldesktopapp.model.Grupa;
+import org.example.nauczycieldesktopapp.model.Obecnosc;
+import org.example.nauczycieldesktopapp.model.Termin;
 import org.example.nauczycieldesktopapp.service.GrupaService;
+import org.example.nauczycieldesktopapp.service.ObecnoscService;
+import org.example.nauczycieldesktopapp.service.TerminService;
+import org.example.nauczycieldesktopapp.view.SprawdzObecnosciView;
 import org.example.nauczycieldesktopapp.view.zarzadzanie.ZarzadzanieGrupamiView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SprawdzObecnosciController extends MainMenuController {
+
+
+    @FXML public TableView<Termin> obecnosciTable;
+
+    @FXML public TableColumn<Termin, String> idColumn;
+    @FXML public TableColumn<Termin, String> dateColumn;
+    @FXML public TableColumn<Termin, String> nameColumn;
+    @FXML public TableColumn<Termin, Void> genBtnColumn;
+
+    @FXML public ObservableList<Termin> terminObservableList = FXCollections.observableArrayList();
+
+    private static ObecnoscService obecnosciService = new ObecnoscService();
+    private static TerminService terminService = new TerminService();
+
+    private List<Termin> terminy;
+
+    public void setTermin() throws IOException {
+        this.terminy = terminService.getAllTermins();
+
+        terminObservableList.setAll(terminy);
+        obecnosciTable.setItems(terminObservableList);
+
+    }
+
+
+
+
     @FXML
-    public TableView<Grupa> groupTable;
-
-    @FXML public TableColumn<Grupa, String> idColumn;
-    @FXML public TableColumn<Grupa, String> nameColumn;
-
-    @FXML public TableColumn<Grupa, Void> listaBtnColumn;
-    @FXML public TableColumn<Grupa, Void> deleteColumn;
-
-
-    private final GrupaService grupaService = new GrupaService();
-
-    private final ObservableList<Grupa> grupaObservableList = FXCollections.observableArrayList();
-
-
-
-    @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
 
         idColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getId()).asString());
-        nameColumn.setCellValueFactory(cellData -> cellData.getValue().nazwaProperty());
+        dateColumn.setCellValueFactory(cellData -> cellData.getValue().dataProperty());
+        nameColumn.setCellValueFactory(cellData -> cellData.getValue().getGrupa().nazwaProperty());
 
-        deleteButtonTable();
-        studentListButtonTable();
+        genObecnoscListBtn();
 
-        try {
-            List<Grupa> groups = grupaService.getAllGroups();
-            grupaObservableList.setAll(groups);
-            groupTable.setItems(grupaObservableList);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
-    private void deleteButtonTable() {
-        Callback<TableColumn<Grupa, Void>, TableCell<Grupa, Void>> cellFactory = param -> new TableCell<>() {
-            private final Button btn = new Button("Usuń");
-
-            {
-                btn.setOnAction(event -> {
-                    Grupa grupa = getTableView().getItems().get(getIndex());
-                    boolean success = false;
-                    try {
-                        success = grupaService.removeGrupa(grupa);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    if (success) {
-                        grupaObservableList.remove(getIndex());
-                        System.out.println("Usunięto grupę: " + grupa.getId());
-                    } else {
-                        System.err.println("Błąd usuwania grupy.");
-                    }
-                });
-            }
-
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                setGraphic(empty ? null : btn);
-            }
-        };
-        deleteColumn.setCellFactory(cellFactory);
-    }
-
-    private void studentListButtonTable() {
-        Callback<TableColumn<Grupa, Void>, TableCell<Grupa, Void>> cellFactory = param -> new TableCell<>() {
-            private final Button btn = new Button("Pokaż studentów");
+    private void genObecnoscListBtn() {
+        Callback<TableColumn<Termin, Void>, TableCell<Termin, Void>> cellFactory = param -> new TableCell<>() {
+            private final Button btn = new Button("Generuj");
 
             {
                 btn.setOnAction(event -> {
 
-                    Grupa grupa = getTableView().getItems().get(getIndex());
+                    Termin termin = getTableView().getItems().get(getIndex());
 
                     try {
-                        ZarzadzanieGrupamiView.launchSubList(grupa);
+                        SprawdzObecnosciView.launchSubList(termin);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -107,7 +86,6 @@ public class SprawdzObecnosciController extends MainMenuController {
                 setGraphic(empty ? null : btn);
             }
         };
-
-        listaBtnColumn.setCellFactory(cellFactory);
+        genBtnColumn.setCellFactory(cellFactory);
     }
 }
