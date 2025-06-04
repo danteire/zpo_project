@@ -1,5 +1,6 @@
 package org.example.listaobecnosci.service;
 
+import jakarta.transaction.Transactional;
 import org.example.listaobecnosci.Obecnosc;
 import org.example.listaobecnosci.repository.ObecnoscRepository;
 import org.example.listaobecnosci.statusEnum;
@@ -81,6 +82,21 @@ public class ObecnoscService {
         obecnoscRepository.deleteById(id);
     }
 
+
+    /**
+     * Usuwa wszystkie obecności powiązane z danym terminem.
+     *
+     * Metoda usuwa z bazy danych wszystkie rekordy obecności
+     * przypisane do terminu o podanym identyfikatorze {@code terminId}.
+     * Operacja jest wykonywana w ramach transakcji.
+     *
+     * @param terminId identyfikator terminu, którego obecności mają zostać usunięte
+     */
+    @Transactional
+    public void deleteByTerminId(Long terminId) {
+        obecnoscRepository.deleteByTerminId(terminId);
+    }
+
     /**
      * Pobiera listę obecności o określonym statusie.
      *
@@ -121,4 +137,5 @@ public class ObecnoscService {
     public List<Obecnosc> getByStudentIdAndTerminId(Long studentId, Long terminId) {
         return obecnoscRepository.findByStudentIdAndTerminId(studentId, terminId);
     }
+
 }

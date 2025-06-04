@@ -81,6 +81,18 @@ public class ObecnoscController {
     }
 
     /**
+     * Usuwa wszystkie obecności powiązane z podanym terminem.
+     *
+     * @param terminId identyfikator terminu, którego obecności mają zostać usunięte
+     * @return odpowiedź HTTP z kodem 204 (no content)
+     */
+    @DeleteMapping("/termin/{terminId}")
+    public ResponseEntity<Void> deleteByTerminId(@PathVariable Long terminId) {
+        obecnoscService.deleteByTerminId(terminId);
+        return ResponseEntity.noContent().build();
+    }
+
+    /**
      * Pobiera listę obecności dla konkretnego studenta.
      *
      * @param studentId identyfikator studenta
