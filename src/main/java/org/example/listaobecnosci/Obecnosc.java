@@ -39,7 +39,7 @@ public class Obecnosc {
      * Student przypisany do tego wpisu obecności.
      * Relacja wiele do jednego z encją {@link Student}.
      */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
@@ -47,7 +47,7 @@ public class Obecnosc {
      * Termin, którego dotyczy obecność.
      * Relacja wiele do jednego z encją {@link Termin}.
      */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "termin_id", nullable = false)
     private Termin termin;
 
