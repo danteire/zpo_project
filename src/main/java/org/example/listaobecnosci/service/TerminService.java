@@ -28,18 +28,14 @@ public class TerminService {
     private final TerminRepository terminRepository;
     private final ObecnoscRepository obecnoscRepository;
 
-    private final GrupaService grupaService;
-
     /**
      * Konstruktor serwisu.
      *
      * @param terminRepository repozytorium terminów
-     * @param grupaService serwis zarządzający grupami
      */
-    public TerminService(TerminRepository terminRepository, ObecnoscRepository obecnoscRepository, GrupaService grupaService) {
+    public TerminService(TerminRepository terminRepository, ObecnoscRepository obecnoscRepository) {
         this.terminRepository = terminRepository;
         this.obecnoscRepository = obecnoscRepository;
-        this.grupaService = grupaService;
     }
 
     /**
@@ -68,8 +64,7 @@ public class TerminService {
      * @return lista terminów lub pusta lista, jeśli grupa nie istnieje
      */
     public List<Termin> getTerminByGrupaId(Long grupaId) {
-        Optional<Grupa> grupaOpt = grupaService.getGrupaById(grupaId);
-        return grupaOpt.map(terminRepository::findByGrupa).orElse(List.of());
+        return terminRepository.findByGrupaId(grupaId);
     }
 
     /**
