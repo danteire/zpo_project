@@ -5,7 +5,7 @@ import javafx.beans.property.StringProperty;
 
 /**
  * Klasa reprezentująca Grupę w aplikacji.
- *
+ * <p>
  * Przechowuje identyfikator oraz nazwę grupy.
  * Udostępnia również property nazwy do celów wiązania danych w JavaFX.
  */
@@ -59,15 +59,6 @@ public class Grupa {
      */
     public void setId(long id) {
         this.id = id;
-    }
-
-    /**
-     * Ustawia nazwę grupy.
-     *
-     * @param nazwa nowa nazwa grupy
-     */
-    public void setNazwa(String nazwa) {
-        this.nazwa = nazwa;
     }
 
     /**

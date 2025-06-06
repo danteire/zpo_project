@@ -1,6 +1,5 @@
 package org.example.nauczycieldesktopapp.controller.dodawanie;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -17,7 +16,7 @@ import java.io.IOException;
  *
  * @version 1.0
  */
-public class DodawanieStudentaController extends MainMenuController {
+public class AddStudentController extends MainMenuController {
 
     /**
      * Pole tekstowe do wprowadzania imienia studenta.
@@ -45,10 +44,9 @@ public class DodawanieStudentaController extends MainMenuController {
      * i przekazuje go do serwisu w celu zapisania.
      * Wyświetla odpowiedni komunikat w zależności od powodzenia operacji.
      *
-     * @param event zdarzenie kliknięcia przycisku
      */
     @FXML
-    public void handleDodawanieStudenta(ActionEvent event) {
+    public void handleDodawanieStudenta() {
         String imie = imieField.getText();
         String nazwisko = nazwiskoField.getText();
         String indeks = indeksField.getText();
@@ -63,16 +61,16 @@ public class DodawanieStudentaController extends MainMenuController {
 
         try {
             boolean success = studentService.addStudent(student);
+            Alert alert;
             if (success) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION,
+                alert = new Alert(Alert.AlertType.INFORMATION,
                         "Dodano studenta o indeksie: \n" + indeks + " do listy studentów");
                 alert.setTitle("Komunikat");
-                alert.show();
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Niepoprawne dane!");
+                alert = new Alert(Alert.AlertType.ERROR, "Niepoprawne dane!");
                 alert.setTitle("Błąd");
-                alert.show();
             }
+            alert.show();
         } catch (IOException e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Błąd podczas wysyłania danych").show();

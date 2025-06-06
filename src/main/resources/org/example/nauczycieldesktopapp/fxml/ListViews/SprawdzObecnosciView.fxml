@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.nauczycieldesktopapp.controller.listsViews.SprawdzObecnosciController">
+<BorderPane prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.nauczycieldesktopapp.controller.listsViews.CheckObecnosciController">
 
     <left>
         <AnchorPane prefHeight="700.0" prefWidth="490.0" style="-fx-background-color: #0090FE;" BorderPane.alignment="CENTER">

@@ -4,18 +4,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.io.IOException;
-
 import org.example.nauczycieldesktopapp.controller.listsViews.StudentListViewController;
 import org.example.nauczycieldesktopapp.model.Grupa;
-import org.example.nauczycieldesktopapp.view.dodawanie.DodawanieStudentaView;
+import org.example.nauczycieldesktopapp.view.dodawanie.AddStudentView;
+
+import java.io.IOException;
 
 /**
  * Klasa zarządza widokiem zarządzania grupami w aplikacji desktopowej.
  * Umożliwia uruchomienie głównego widoku zarządzania grupami oraz widoku listy studentów dla konkretnej grupy.
  * Widoki umożliwiają przesuwanie okna przez przeciąganie dowolnego obszaru widoku.
  */
-public class ZarzadzanieGrupamiView {
+public class ManageGroupsView {
 
     private static double xOffset = 0;
     private static double yOffset = 0;
@@ -28,7 +28,7 @@ public class ZarzadzanieGrupamiView {
      * @throws IOException jeśli wystąpi problem z załadowaniem pliku FXML
      */
     public static void launch(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ZarzadzanieViews/ZarzadzanieGrupami.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AddStudentView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ZarzadzanieViews/ZarzadzanieGrupami.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);
@@ -56,7 +56,7 @@ public class ZarzadzanieGrupamiView {
      * @throws IOException jeśli wystąpi problem z załadowaniem pliku FXML
      */
     public static void launchSubList(Grupa grupa) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ListViews/StudentListView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AddStudentView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ListViews/StudentListView.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root, 600, 400);

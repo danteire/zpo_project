@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class DodawanieStudentaView {
+public class AddStudentView {
     private static double xOffset = 0;
     private static double yOffset = 0;
 
@@ -19,7 +19,7 @@ public class DodawanieStudentaView {
      * @throws IOException jeśli wystąpi problem z załadowaniem pliku FXML
      */
     public static void launch(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/DodawanieViews/DodawanieStudentaView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AddStudentView.class.getResource("/org/example/nauczycieldesktopapp/fxml/DodawanieViews/DodawanieStudentaView.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);

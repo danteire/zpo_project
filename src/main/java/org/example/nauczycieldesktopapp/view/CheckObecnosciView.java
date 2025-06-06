@@ -4,10 +4,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.example.nauczycieldesktopapp.controller.listsViews.GenObecnosci;
-import org.example.nauczycieldesktopapp.controller.listsViews.SprawdzObecnosciController;
+import org.example.nauczycieldesktopapp.controller.listsViews.GenerateObecnosci;
+import org.example.nauczycieldesktopapp.controller.listsViews.CheckObecnosciController;
 import org.example.nauczycieldesktopapp.model.Termin;
-import org.example.nauczycieldesktopapp.view.dodawanie.DodawanieStudentaView;
+import org.example.nauczycieldesktopapp.view.dodawanie.AddStudentView;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ import java.io.IOException;
  * Umożliwia uruchomienie głównego widoku oraz podwidoku listy obecności dla konkretnego terminu.
  * Okna można przesuwać przeciągając dowolny obszar widoku.
  */
-public class SprawdzObecnosciView {
+public class CheckObecnosciView {
 
     private static double xOffset = 0;
     private static double yOffset = 0;
@@ -29,7 +29,7 @@ public class SprawdzObecnosciView {
      * @throws IOException jeśli wystąpi problem z załadowaniem pliku FXML
      */
     public static void launch(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ListViews/SprawdzObecnosciView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AddStudentView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ListViews/SprawdzObecnosciView.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);
@@ -47,7 +47,7 @@ public class SprawdzObecnosciView {
         stage.setScene(scene);
         stage.setTitle("Sprawdź Obecności");
 
-        SprawdzObecnosciController controller = fxmlLoader.getController();
+        CheckObecnosciController controller = fxmlLoader.getController();
         controller.setTermin();
 
         stage.show();
@@ -61,7 +61,7 @@ public class SprawdzObecnosciView {
      * @throws IOException jeśli wystąpi problem z załadowaniem pliku FXML
      */
     public static void launchSubList(Termin termin) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ListViews/ObecnosciListView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AddStudentView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ListViews/ObecnosciListView.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root, 600, 400);
@@ -80,7 +80,7 @@ public class SprawdzObecnosciView {
         stage.setScene(scene);
         stage.setTitle("Lista Obecnosci dla Terminu: " + termin.dataProperty() + " Grupy: " + termin.getGrupa().nazwaProperty());
 
-        GenObecnosci controller = fxmlLoader.getController();
+        GenerateObecnosci controller = fxmlLoader.getController();
 
         controller.setTermin(termin);
         controller.setObecnosci();

@@ -3,14 +3,13 @@ package org.example.nauczycieldesktopapp.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import java.io.IOException;
-
 import org.example.nauczycieldesktopapp.view.MainMenuView;
+
+import java.io.IOException;
 
 /**
  * Kontroler odpowiedzialny za obsługę logowania użytkownika.
@@ -19,12 +18,6 @@ import org.example.nauczycieldesktopapp.view.MainMenuView;
  * przyciskiem logowania oraz ikoną zamknięcia aplikacji.
  */
 public class LoginController {
-
-    /**
-     * Przycisk służący do rozpoczęcia procesu logowania.
-     */
-    @FXML
-    private Button loginButton;
 
     /**
      * Ikona służąca do zamknięcia okna aplikacji.
@@ -68,10 +61,9 @@ public class LoginController {
     /**
      * Obsługuje kliknięcie na ikonę zamknięcia aplikacji i zamyka okno.
      *
-     * @param event zdarzenie kliknięcia myszy na ikonę zamknięcia
      */
     @FXML
-    private void handleClose(javafx.scene.input.MouseEvent event) {
+    private void handleClose() {
         Stage stage = (Stage) closeIcon.getScene().getWindow();
         stage.close();
     }

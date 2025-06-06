@@ -46,11 +46,6 @@ public class GroupListViewController {
     @FXML private TableColumn<Grupa, Void> addColumn;
 
     /**
-     * Lista wszystkich grup pobranych z serwisu.
-     */
-    private List<Grupa> grupy;
-
-    /**
      * Callback wywoływany po wybraniu grupy.
      */
     public Consumer<Grupa> onGroupSelected;
@@ -61,7 +56,10 @@ public class GroupListViewController {
      * @throws IOException jeśli wystąpi błąd podczas komunikacji z serwerem
      */
     public void setGrupa() throws IOException {
-        grupy = GrupaService.getAllGroups();
+        /**
+         * Lista wszystkich grup pobranych z serwisu.
+         */
+        List<Grupa> grupy = GrupaService.getAllGroups();
         ObservableList<Grupa> lista = FXCollections.observableArrayList(grupy);
         groupTable.setItems(lista);
     }

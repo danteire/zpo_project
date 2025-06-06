@@ -1,15 +1,21 @@
 package org.example.nauczycieldesktopapp.controller.zarzadzanie;
 
-import javafx.beans.property.*;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.stage.Stage;
 import org.example.nauczycieldesktopapp.controller.MainMenuController;
-import org.example.nauczycieldesktopapp.model.*;
+import org.example.nauczycieldesktopapp.model.Obecnosc;
+import org.example.nauczycieldesktopapp.model.Status;
+import org.example.nauczycieldesktopapp.model.Student;
+import org.example.nauczycieldesktopapp.model.Termin;
 import org.example.nauczycieldesktopapp.service.ObecnoscService;
 import org.example.nauczycieldesktopapp.service.StudentService;
 
@@ -22,7 +28,7 @@ import java.util.List;
  * Pozwala ustawić status obecności (obecny, spóźniony, nieobecny) dla każdego studenta
  * oraz wysłać te dane do serwera.
  */
-public class ZarzadzanieObecnosciamiController extends MainMenuController {
+public class ManageObecnosciController extends MainMenuController {
 
     @FXML
     private TableView<StudentObecnoscRow> tabelaObecnosci;
@@ -160,11 +166,10 @@ public class ZarzadzanieObecnosciamiController extends MainMenuController {
      * Kasuje stare obecności i wysyła nowe statusy obecności do serwera.
      * Zamknięcie okna po pomyślnym wysłaniu.
      *
-     * @param event event kliknięcia
      * @throws IOException w przypadku błędu komunikacji z serwerem
      */
     @FXML
-    private void handleWyslij(ActionEvent event) throws IOException {
+    private void handleWyslij() throws IOException {
         if (termin == null) {
             System.err.println("Termin nie został ustawiony!");
             return;

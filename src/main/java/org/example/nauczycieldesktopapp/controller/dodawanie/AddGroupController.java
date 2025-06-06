@@ -1,6 +1,5 @@
 package org.example.nauczycieldesktopapp.controller.dodawanie;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -17,7 +16,7 @@ import java.io.IOException;
  *
  * @version 1.0
  */
-public class DodawanieGrupyController extends MainMenuController {
+public class AddGroupController extends MainMenuController {
 
     /**
      * Pole tekstowe w interfejsie użytkownika służące do wprowadzania nazwy grupy.
@@ -34,10 +33,9 @@ public class DodawanieGrupyController extends MainMenuController {
      * Waliduje dane wejściowe, tworzy obiekt grupy i wywołuje serwis w celu zapisania danych.
      * Wyświetla odpowiedni komunikat w zależności od powodzenia operacji.
      *
-     * @param event zdarzenie kliknięcia przycisku
      */
     @FXML
-    public void handleDodawanieGrupy(ActionEvent event) {
+    public void handleDodawanieGrupy() {
         String nazwa = nazwaField.getText();
 
         if (nazwa.isBlank()) {

@@ -2,9 +2,6 @@ package org.example.nauczycieldesktopapp.model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import org.example.nauczycieldesktopapp.service.StudentService;
-
-import java.io.IOException;
 
 /**
  * Klasa reprezentująca obecność studenta na danym terminie (np. zajęciach).
@@ -154,15 +151,4 @@ public class Obecnosc {
         this.terminID = terminID;
     }
 
-    /**
-     * Pobiera obiekt studenta na podstawie podanego identyfikatora.
-     *
-     * @param studentId identyfikator studenta
-     * @return obiekt studenta
-     * @throws IOException w przypadku problemów z pobraniem danych
-     */
-    public Student getStudent(Long studentId) throws IOException {
-        StudentService studentService = new StudentService();
-        return (Student) studentService.getStudentsByID(studentId);
-    }
 }

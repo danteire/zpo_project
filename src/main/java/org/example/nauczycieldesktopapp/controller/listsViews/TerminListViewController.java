@@ -12,7 +12,7 @@ import javafx.util.Callback;
 import org.example.nauczycieldesktopapp.model.Grupa;
 import org.example.nauczycieldesktopapp.model.Termin;
 import org.example.nauczycieldesktopapp.service.TerminService;
-import org.example.nauczycieldesktopapp.view.zarzadzanie.ZarzadzanieObecnosciamiView;
+import org.example.nauczycieldesktopapp.view.zarzadzanie.ManageObecnosciView;
 
 import java.io.IOException;
 import java.util.List;
@@ -67,7 +67,7 @@ public class TerminListViewController {
             {
                 btn.setOnAction(event -> {
                     Termin termin = getTableView().getItems().get(getIndex());
-                    boolean success = false;
+                    boolean success;
                     try {
                         success = terminService.deleteTermin(termin);
                     } catch (IOException e) {
@@ -104,7 +104,7 @@ public class TerminListViewController {
                 btn.setOnAction(event -> {
                     Termin termin = getTableView().getItems().get(getIndex());
                     try {
-                        ZarzadzanieObecnosciamiView.launch(termin);
+                        ManageObecnosciView.launch(termin);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

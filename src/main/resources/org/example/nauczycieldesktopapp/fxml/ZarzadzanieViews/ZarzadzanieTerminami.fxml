@@ -8,7 +8,7 @@
 <?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.nauczycieldesktopapp.controller.zarzadzanie.ZarzadzanieTerminamiController"
+            fx:controller="org.example.nauczycieldesktopapp.controller.zarzadzanie.ManageTerminsController"
             prefHeight="700.0" prefWidth="980.0">
 
     <left>

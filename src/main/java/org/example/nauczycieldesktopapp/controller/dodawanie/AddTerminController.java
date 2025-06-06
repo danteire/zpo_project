@@ -1,6 +1,5 @@
 package org.example.nauczycieldesktopapp.controller.dodawanie;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -20,7 +19,7 @@ import java.time.LocalDateTime;
  *
  * @version 1.0
  */
-public class DodawanieTerminuController extends MainMenuController {
+public class AddTerminController extends MainMenuController {
 
     /**
      * Serwis odpowiedzialny za operacje na terminach.
@@ -65,9 +64,8 @@ public class DodawanieTerminuController extends MainMenuController {
      * tworzy pełny znacznik czasu i przekazuje termin do zapisania w serwisie.
      * Informuje użytkownika o powodzeniu lub błędzie.
      *
-     * @param event zdarzenie kliknięcia przycisku
      */
-    public void handleDodawanieTerminu(ActionEvent event) {
+    public void handleDodawanieTerminu() {
         LocalDate selectedDate = datePicker.getValue();
         Integer hour = hourBox.getValue();
         Integer minute = minuteBox.getValue();

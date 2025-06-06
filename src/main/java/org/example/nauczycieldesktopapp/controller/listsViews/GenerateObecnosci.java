@@ -1,6 +1,5 @@
 package org.example.nauczycieldesktopapp.controller.listsViews;
 
-import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,7 +20,7 @@ import java.util.List;
  *
  * @version 1.0
  */
-public class GenObecnosci {
+public class GenerateObecnosci {
 
     /**
      * Tabela wyświetlająca dane o obecnościach studentów.
@@ -64,11 +63,6 @@ public class GenObecnosci {
     private static final TerminService terminService = new TerminService();
 
     /**
-     * Lista obecności studentów dla danego terminu.
-     */
-    private List<Obecnosc> obecnosci;
-
-    /**
      * Termin, dla którego wyświetlana jest lista obecności.
      */
     private Termin termin;
@@ -79,7 +73,10 @@ public class GenObecnosci {
      * @throws IOException w przypadku błędu podczas pobierania danych z serwera
      */
     public void setObecnosci() throws IOException {
-        this.obecnosci = obecnosciService.getObecnosciByTermin(termin);
+        /**
+         * Lista obecności studentów dla danego terminu.
+         */
+        List<Obecnosc> obecnosci = obecnosciService.getObecnosciByTermin(termin);
         obecnoscObservableList.setAll(obecnosci);
         studentTable.setItems(obecnoscObservableList);
     }

@@ -8,7 +8,7 @@ import javafx.util.Callback;
 import org.example.nauczycieldesktopapp.controller.MainMenuController;
 import org.example.nauczycieldesktopapp.model.Student;
 import org.example.nauczycieldesktopapp.service.StudentService;
-import org.example.nauczycieldesktopapp.view.zarzadzanie.ZarzadzanieStudentamiView;
+import org.example.nauczycieldesktopapp.view.zarzadzanie.ManageStudentsView;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
  * Kontroler odpowiedzialny za wyświetlanie listy studentów,
  * usuwanie ich oraz przypisywanie do grup.
  */
-public class ZarzadzanieStudentamiController extends MainMenuController {
+public class ManageStudentsController extends MainMenuController {
 
     @FXML
     private TableView<Student> studentTable;
@@ -104,7 +104,7 @@ public class ZarzadzanieStudentamiController extends MainMenuController {
                 assignButton.setOnAction(event -> {
                     Student student = getTableView().getItems().get(getIndex());
                     try {
-                        ZarzadzanieStudentamiView.launchSubList(grupa -> {
+                        ManageStudentsView.launchSubList(grupa -> {
                             try {
                                 boolean success = studentService.addStudentToGroup(student.getId(), grupa.getId());
                                 if (success) {

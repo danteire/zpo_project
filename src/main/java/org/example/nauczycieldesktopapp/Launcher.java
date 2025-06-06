@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.util.Objects;
+
 /**
  * Główna klasa uruchamiająca aplikację.
  * Rozpoczyna działanie aplikacji od wyświetlenia widoku logowania.
@@ -29,7 +31,7 @@ public class Launcher extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/org/example/nauczycieldesktopapp/fxml/LoginView.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/example/nauczycieldesktopapp/fxml/LoginView.fxml")));
 
         Scene scene = new Scene(root);
 

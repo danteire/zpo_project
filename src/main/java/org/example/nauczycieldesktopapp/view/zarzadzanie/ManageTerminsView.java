@@ -5,9 +5,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.example.nauczycieldesktopapp.controller.listsViews.TerminListViewController;
-import org.example.nauczycieldesktopapp.controller.zarzadzanie.ZarzadzanieTerminamiController;
+import org.example.nauczycieldesktopapp.controller.zarzadzanie.ManageTerminsController;
 import org.example.nauczycieldesktopapp.model.Grupa;
-import org.example.nauczycieldesktopapp.view.dodawanie.DodawanieStudentaView;
+import org.example.nauczycieldesktopapp.view.dodawanie.AddStudentView;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ import java.io.IOException;
  * Umożliwia uruchomienie głównego widoku terminów oraz widoku listy terminów dla danej grupy.
  * Okna można przesuwać przeciągając dowolny obszar widoku.
  */
-public class ZarzadzanieTerminamiView {
+public class ManageTerminsView {
     private static double xOffset = 0;
     private static double yOffset = 0;
 
@@ -28,7 +28,7 @@ public class ZarzadzanieTerminamiView {
      * @throws IOException jeśli wystąpi problem z załadowaniem pliku FXML
      */
     public static void launch(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ZarzadzanieStudentamiView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ZarzadzanieViews/ZarzadzanieTerminami.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ManageStudentsView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ZarzadzanieViews/ZarzadzanieTerminami.fxml"));
         Parent root = fxmlLoader.load();
 
         // Dragging window logic
@@ -41,7 +41,7 @@ public class ZarzadzanieTerminamiView {
             stage.setY(mouseEvent.getScreenY() - yOffset);
         });
 
-        ZarzadzanieTerminamiController controller = fxmlLoader.getController();
+        ManageTerminsController controller = fxmlLoader.getController();
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -57,7 +57,7 @@ public class ZarzadzanieTerminamiView {
      * @throws IOException jeśli wystąpi problem z załadowaniem pliku FXML
      */
     public static void launchSubList(Grupa grupa) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ListViews/TerminListView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AddStudentView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ListViews/TerminListView.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root, 800, 400);

@@ -11,9 +11,8 @@ import javafx.scene.control.TableView;
 import javafx.util.Callback;
 import org.example.nauczycieldesktopapp.controller.MainMenuController;
 import org.example.nauczycieldesktopapp.model.Termin;
-import org.example.nauczycieldesktopapp.service.ObecnoscService;
 import org.example.nauczycieldesktopapp.service.TerminService;
-import org.example.nauczycieldesktopapp.view.SprawdzObecnosciView;
+import org.example.nauczycieldesktopapp.view.CheckObecnosciView;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,7 +23,7 @@ import java.util.List;
  *
  * @version 1.0
  */
-public class SprawdzObecnosciController extends MainMenuController {
+public class CheckObecnosciController extends MainMenuController {
 
     /**
      * Tabela z terminami do sprawdzenia obecności.
@@ -56,10 +55,7 @@ public class SprawdzObecnosciController extends MainMenuController {
      */
     @FXML public ObservableList<Termin> terminObservableList = FXCollections.observableArrayList();
 
-    private static final ObecnoscService obecnosciService = new ObecnoscService();
     private static final TerminService terminService = new TerminService();
-
-    private List<Termin> terminy;
 
     /**
      * Pobiera wszystkie terminy z serwera i ustawia je w tabeli.
@@ -67,7 +63,7 @@ public class SprawdzObecnosciController extends MainMenuController {
      * @throws IOException jeśli wystąpi błąd podczas pobierania danych z serwera
      */
     public void setTermin() throws IOException {
-        this.terminy = terminService.getAllTermins();
+        List<Termin> terminy = terminService.getAllTermins();
         terminObservableList.setAll(terminy);
         obecnosciTable.setItems(terminObservableList);
     }
@@ -101,7 +97,7 @@ public class SprawdzObecnosciController extends MainMenuController {
                 btn.setOnAction(event -> {
                     Termin termin = getTableView().getItems().get(getIndex());
                     try {
-                        SprawdzObecnosciView.launchSubList(termin);
+                        CheckObecnosciView.launchSubList(termin);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

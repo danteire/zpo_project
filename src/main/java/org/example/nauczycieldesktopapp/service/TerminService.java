@@ -45,7 +45,7 @@ public class TerminService {
         ObjectMapper mapper = new ObjectMapper()
                 .registerModule(new JavaTimeModule())
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        System.out.println(json.toString());
+        System.out.println(json);
 
         return mapper.readValue(json.toString(), new TypeReference<>() {});
     }
@@ -175,7 +175,7 @@ public class TerminService {
         ObjectMapper mapper = new ObjectMapper()
                 .registerModule(new JavaTimeModule())
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        System.out.println(json.toString());
+        System.out.println(json);
         return mapper.readValue(json.toString(), new TypeReference<>() {});
     }
 }

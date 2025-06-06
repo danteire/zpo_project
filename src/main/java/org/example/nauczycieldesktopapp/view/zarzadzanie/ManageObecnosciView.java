@@ -4,10 +4,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.example.nauczycieldesktopapp.controller.listsViews.TerminListViewController;
-import org.example.nauczycieldesktopapp.controller.zarzadzanie.ZarzadzanieObecnosciamiController;
+import org.example.nauczycieldesktopapp.controller.zarzadzanie.ManageObecnosciController;
 import org.example.nauczycieldesktopapp.model.Termin;
-import org.example.nauczycieldesktopapp.view.dodawanie.DodawanieStudentaView;
 
 import java.io.IOException;
 
@@ -16,7 +14,7 @@ import java.io.IOException;
  * Umożliwia uruchomienie okna z listą obecności dla wybranego terminu.
  * Widok można przesuwać przeciągając dowolny obszar okna.
  */
-public class ZarzadzanieObecnosciamiView {
+public class ManageObecnosciView {
 
     private static double xOffset = 0;
     private static double yOffset = 0;
@@ -29,7 +27,7 @@ public class ZarzadzanieObecnosciamiView {
      * @throws IOException jeśli wystąpi problem z załadowaniem pliku FXML
      */
     public static void launch(Termin termin) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ZarzadzanieStudentamiView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ZarzadzanieViews/ZarzadzanieObecnosciami.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ManageStudentsView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ZarzadzanieViews/ZarzadzanieObecnosciami.fxml"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root, 470, 460);
@@ -48,7 +46,7 @@ public class ZarzadzanieObecnosciamiView {
         stage.setScene(scene);
         stage.setTitle("Lista Obecności dla terminu: " + termin.dataProperty().getValue());
 
-        ZarzadzanieObecnosciamiController controller = fxmlLoader.getController();
+        ManageObecnosciController controller = fxmlLoader.getController();
         controller.setTermin(termin);
         controller.setStudents(termin);
         controller.setStage(stage);

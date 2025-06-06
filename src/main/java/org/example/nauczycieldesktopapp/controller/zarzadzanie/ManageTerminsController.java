@@ -13,9 +13,8 @@ import org.example.nauczycieldesktopapp.controller.MainMenuController;
 import org.example.nauczycieldesktopapp.model.Grupa;
 import org.example.nauczycieldesktopapp.model.Termin;
 import org.example.nauczycieldesktopapp.service.GrupaService;
-import org.example.nauczycieldesktopapp.service.TerminService;
-import org.example.nauczycieldesktopapp.view.dodawanie.DodawanieTerminuView;
-import org.example.nauczycieldesktopapp.view.zarzadzanie.ZarzadzanieTerminamiView;
+import org.example.nauczycieldesktopapp.view.dodawanie.AddTerminView;
+import org.example.nauczycieldesktopapp.view.zarzadzanie.ManageTerminsView;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,7 +23,7 @@ import java.util.List;
  * Kontroler widoku zarządzania terminami.
  * Dziedziczy po MainMenuController, obsługuje tabelę grup oraz akcje dodawania i przeglądania terminów.
  */
-public class ZarzadzanieTerminamiController extends MainMenuController {
+public class ManageTerminsController extends MainMenuController {
 
     /** Tabela wyświetlająca listę grup. */
     @FXML
@@ -42,19 +41,9 @@ public class ZarzadzanieTerminamiController extends MainMenuController {
     @FXML
     private TableColumn<Grupa, Void> listaBtnColumn;
 
-    /** Kolumna z przyciskiem do usuwania grupy (jeśli nieużywana można usunąć). */
-    @FXML
-    private TableColumn<Grupa, Void> deleteColumn;
-
     /** Kolumna z przyciskiem do dodawania nowego terminu dla grupy. */
     @FXML
     private TableColumn<Grupa, Void> addColumn;
-
-    /** Serwis do obsługi operacji na grupach. */
-    private final GrupaService grupaService = new GrupaService();
-
-    /** Serwis do obsługi operacji na terminach. */
-    private final TerminService terminService = new TerminService();
 
     /** Lista obserwowalna grup, powiązana z tabelą. */
     private final ObservableList<Grupa> grupaObservableList = FXCollections.observableArrayList();
@@ -72,7 +61,7 @@ public class ZarzadzanieTerminamiController extends MainMenuController {
         addButtonTable();
 
         try {
-            List<Grupa> groups = grupaService.getAllGroups();
+            List<Grupa> groups = GrupaService.getAllGroups();
             grupaObservableList.setAll(groups);
             groupTable.setItems(grupaObservableList);
         } catch (IOException e) {
@@ -96,7 +85,7 @@ public class ZarzadzanieTerminamiController extends MainMenuController {
                     termin.setGrupa(grupa);
 
                     try {
-                        DodawanieTerminuView.launch(termin);
+                        AddTerminView.launch(termin);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -125,7 +114,7 @@ public class ZarzadzanieTerminamiController extends MainMenuController {
                     Grupa grupa = getTableView().getItems().get(getIndex());
 
                     try {
-                        ZarzadzanieTerminamiView.launchSubList(grupa);
+                        ManageTerminsView.launchSubList(grupa);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

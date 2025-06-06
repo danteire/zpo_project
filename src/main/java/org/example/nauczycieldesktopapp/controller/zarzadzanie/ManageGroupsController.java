@@ -9,13 +9,10 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
-
 import org.example.nauczycieldesktopapp.controller.MainMenuController;
 import org.example.nauczycieldesktopapp.model.Grupa;
-
 import org.example.nauczycieldesktopapp.service.GrupaService;
-
-import org.example.nauczycieldesktopapp.view.zarzadzanie.ZarzadzanieGrupamiView;
+import org.example.nauczycieldesktopapp.view.zarzadzanie.ManageGroupsView;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,7 +24,7 @@ import java.util.List;
  * usuwanie grup oraz wyświetlanie listy studentów przypisanych do danej grupy.
  * Rozszerza {@link MainMenuController}.
  */
-public class ZarzadznieGrupamiController extends MainMenuController {
+public class ManageGroupsController extends MainMenuController {
 
     /**
      * Tabela wyświetlająca grupy.
@@ -82,7 +79,7 @@ public class ZarzadznieGrupamiController extends MainMenuController {
         studentListButtonTable();
 
         try {
-            List<Grupa> groups = grupaService.getAllGroups();
+            List<Grupa> groups = GrupaService.getAllGroups();
             grupaObservableList.setAll(groups);
             groupTable.setItems(grupaObservableList);
         } catch (IOException e) {
@@ -101,7 +98,7 @@ public class ZarzadznieGrupamiController extends MainMenuController {
             {
                 btn.setOnAction(event -> {
                     Grupa grupa = getTableView().getItems().get(getIndex());
-                    boolean success = false;
+                    boolean success;
                     try {
                         success = grupaService.removeGrupa(grupa);
                     } catch (IOException e) {
@@ -139,7 +136,7 @@ public class ZarzadznieGrupamiController extends MainMenuController {
                     Grupa grupa = getTableView().getItems().get(getIndex());
 
                     try {
-                        ZarzadzanieGrupamiView.launchSubList(grupa);
+                        ManageGroupsView.launchSubList(grupa);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
