@@ -1,10 +1,13 @@
 package org.example.listaobecnosci.repository;
 
+import jakarta.transaction.Transactional;
 import org.example.listaobecnosci.Obecnosc;
 import org.example.listaobecnosci.Student;
 import org.example.listaobecnosci.Termin;
 import org.example.listaobecnosci.statusEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -81,8 +84,23 @@ public interface ObecnoscRepository extends JpaRepository<Obecnosc, Long> {
      *
      * @param terminId identyfikator terminu, którego powiązane encje mają zostać usunięte
      */
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Obecnosc o WHERE o.termin.id = :terminId")
     void deleteByTerminId(Long terminId);
 
+    /**
+     * Usuwa wszystkie wpisy obecności powiązane ze studentem o podanym identyfikatorze.
+     *
+     * Metoda wykonuje zapytanie usuwające wszystkie rekordy obecności
+     * powiązane z {@link Student} o identyfikatorze {@code studentId}.
+     * Metoda wymaga transakcji i jest oznaczona jako modyfikująca.
+     *
+     * @param studentId identyfikator studenta, którego obecności mają zostać usunięte
+     */
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Obecnosc o WHERE o.student.id = :studentId")
     void deleteByStudentId(Long studentId);
 
 
