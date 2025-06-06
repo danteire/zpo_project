@@ -3,7 +3,7 @@ package org.example.listaobecnosci.service;
 import org.example.listaobecnosci.Grupa;
 import org.example.listaobecnosci.Termin;
 import org.example.listaobecnosci.repository.GrupaRepository;
-import org.example.listaobecnosci.repository.TerminRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public class GrupaService {
      *
      * @param grupaRepository repozytorium grup
      */
-    public GrupaService(GrupaRepository grupaRepository, TerminRepository terminRepository, TerminService terminService) {
+    public GrupaService(GrupaRepository grupaRepository, TerminService terminService) {
         this.grupaRepository = grupaRepository;
         this.terminService = terminService;
     }
