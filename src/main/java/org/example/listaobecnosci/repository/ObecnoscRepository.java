@@ -82,4 +82,8 @@ public interface ObecnoscRepository extends JpaRepository<Obecnosc, Long> {
      * @param terminId identyfikator terminu, którego powiązane encje mają zostać usunięte
      */
     void deleteByTerminId(Long terminId);
+
+    void deleteByStudentId(Long studentId);
+
+
 }

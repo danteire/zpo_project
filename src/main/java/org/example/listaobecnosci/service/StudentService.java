@@ -3,6 +3,7 @@ package org.example.listaobecnosci.service;
 import org.example.listaobecnosci.Student;
 import org.example.listaobecnosci.Grupa;
 import org.example.listaobecnosci.repository.GrupaRepository;
+import org.example.listaobecnosci.repository.ObecnoscRepository;
 import org.example.listaobecnosci.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
@@ -26,16 +27,19 @@ public class StudentService {
 
     private final StudentRepository studentRepository;
     private final GrupaRepository grupaRepository;
+    private final ObecnoscRepository obecnoscRepository;
 
     /**
      * Konstruktor serwisu.
      *
      * @param studentRepository repozytorium studentów
      * @param grupaRepository repozytorium grup
+     * @param obecnoscRepository repozytorium obecności
      */
-    public StudentService(StudentRepository studentRepository, GrupaRepository grupaRepository) {
+    public StudentService(StudentRepository studentRepository, GrupaRepository grupaRepository, ObecnoscRepository obecnoscRepository) {
         this.studentRepository = studentRepository;
         this.grupaRepository = grupaRepository;
+        this.obecnoscRepository = obecnoscRepository;
     }
 
     /**
@@ -88,11 +92,12 @@ public class StudentService {
     }
 
     /**
-     * Usuwa studenta o podanym identyfikatorze.
+     * Usuwa studenta o podanym identyfikatorze oraz wszystkie należące do niego obecności.
      *
      * @param id identyfikator studenta do usunięcia
      */
     public void deleteStudent(Long id) {
+        obecnoscRepository.deleteByStudentId(id);
         studentRepository.deleteById(id);
     }
 
