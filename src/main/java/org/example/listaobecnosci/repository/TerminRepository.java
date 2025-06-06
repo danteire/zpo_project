@@ -28,4 +28,12 @@ public interface TerminRepository extends JpaRepository<Termin, Long> {
      * @return lista terminów powiązanych z podaną grupą
      */
     List<Termin> findByGrupa(Grupa grupa);
+
+    /**
+     * Znajduje listę terminów powiązanych z daną grupą (jej id).
+     *
+     * @param id, dla którego szukamy terminów
+     * @return lista terminów powiązanych z podaną grupą
+     */
+    List<Termin> findByGrupaId(Long id);
 }
