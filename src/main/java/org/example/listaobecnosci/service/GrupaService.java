@@ -35,6 +35,10 @@ public class GrupaService {
         this.terminService = terminService;
     }
 
+    public GrupaService(GrupaRepository grupaRepository) {
+        this.grupaRepository = grupaRepository;
+    }
+
     /**
      * Pobiera listę wszystkich grup.
      *
