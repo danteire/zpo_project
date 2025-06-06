@@ -1,7 +1,10 @@
 package org.example.listaobecnosci.repository;
 
+import jakarta.transaction.Transactional;
 import org.example.listaobecnosci.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -36,4 +39,18 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
      * @return lista studentów przypisanych do grupy
      */
     List<Student> findByGrupaId(Long grupaId);
+
+    /**
+     * Ustawia pole {@code grupa} na {@code null} dla wszystkich studentów
+     * powiązanych z grupą o podanym identyfikatorze.
+     *
+     * Metoda jest wykonywana jako zapytanie aktualizujące (bulk update),
+     * aby odpiąć studentów od usuwanej grupy przed jej usunięciem.
+     *
+     * @param grupaId identyfikator grupy, której studenci mają zostać odłączeni
+     */
+    @Modifying
+    @Transactional
+    @Query("UPDATE Student s SET s.grupa = null WHERE s.grupa.id = :grupaId")
+    void unsetGrupaForStudentsByGrupaId(Long grupaId);
 }

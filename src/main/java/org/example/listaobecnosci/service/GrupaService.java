@@ -4,6 +4,7 @@ import org.example.listaobecnosci.Grupa;
 import org.example.listaobecnosci.Termin;
 import org.example.listaobecnosci.repository.GrupaRepository;
 
+import org.example.listaobecnosci.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,15 +25,17 @@ public class GrupaService {
 
     private final GrupaRepository grupaRepository;
     private final TerminService terminService;
+    private final StudentRepository studentRepository;
 
     /**
      * Konstruktor serwisu.
      *
      * @param grupaRepository repozytorium grup
      */
-    public GrupaService(GrupaRepository grupaRepository, TerminService terminService) {
+    public GrupaService(GrupaRepository grupaRepository, TerminService terminService, StudentRepository studentRepository) {
         this.grupaRepository = grupaRepository;
         this.terminService = terminService;
+        this.studentRepository = studentRepository;
     }
 
     /**
@@ -70,6 +73,8 @@ public class GrupaService {
      * @param id identyfikator grupy do usunięcia
      */
     public void deleteGrupa(Long id) {
+        studentRepository.unsetGrupaForStudentsByGrupaId(id);
+
         List<Termin> terminy = terminService.getTerminByGrupaId(id);
         for (Termin termin : terminy) {
             terminService.deleteTermin(termin.getId());  // usuwa też obecności!
