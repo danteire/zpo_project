@@ -7,7 +7,6 @@ import javafx.stage.Stage;
 import org.example.nauczycieldesktopapp.controller.dodawanie.DodawanieTerminuController;
 import org.example.nauczycieldesktopapp.model.Termin;
 
-
 import java.io.IOException;
 
 public class DodawanieTerminuView {
@@ -15,7 +14,14 @@ public class DodawanieTerminuView {
     private static double xOffset = 0;
     private static double yOffset = 0;
 
-    public static void launch(Termin termin) throws IOException{
+    /**
+     * Uruchamia widok dodawania lub edycji terminu w nowym oknie Stage.
+     * Umożliwia przesuwanie okna przeciągając dowolny obszar widoku.
+     *
+     * @param termin obiekt Termin, który ma zostać edytowany lub null w przypadku dodawania nowego terminu
+     * @throws IOException jeśli wystąpi problem z załadowaniem pliku FXML
+     */
+    public static void launch(Termin termin) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/DodawanieViews/DodawanieTerminuView.fxml"));
         Parent root = fxmlLoader.load();
 

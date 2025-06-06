@@ -11,6 +11,13 @@ public class DodawanieStudentaView {
     private static double xOffset = 0;
     private static double yOffset = 0;
 
+    /**
+     * Uruchamia widok dodawania studenta w nowym oknie Stage.
+     * Umożliwia przesuwanie okna poprzez przeciąganie jego powierzchni.
+     *
+     * @param stage Stage, na którym zostanie wyświetlony widok
+     * @throws IOException jeśli wystąpi problem z załadowaniem pliku FXML
+     */
     public static void launch(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/DodawanieViews/DodawanieStudentaView.fxml"));
         Parent root = fxmlLoader.load();
@@ -32,4 +39,3 @@ public class DodawanieStudentaView {
         stage.show();
     }
 }
-

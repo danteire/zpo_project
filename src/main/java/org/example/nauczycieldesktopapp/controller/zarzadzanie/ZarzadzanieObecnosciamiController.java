@@ -17,6 +17,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Kontroler do zarządzania obecnościami studentów na danym terminie.
+ * Pozwala ustawić status obecności (obecny, spóźniony, nieobecny) dla każdego studenta
+ * oraz wysłać te dane do serwera.
+ */
 public class ZarzadzanieObecnosciamiController extends MainMenuController {
 
     @FXML
@@ -43,10 +48,19 @@ public class ZarzadzanieObecnosciamiController extends MainMenuController {
 
     private Stage stage;
 
+    /**
+     * Ustawia termin, dla którego zarządzamy obecnościami.
+     * @param termin termin, którego obecności chcemy edytować
+     */
     public void setTermin(Termin termin) {
         this.termin = termin;
     }
 
+    /**
+     * Pobiera listę studentów z grupy danego terminu i wypełnia tabelę obiektami StudentObecnoscRow.
+     * @param termin termin, na podstawie którego pobieramy studentów
+     * @throws IOException w przypadku błędu podczas pobierania studentów
+     */
     public void setStudents(Termin termin) throws IOException {
         List<Student> students = studentService.getStudentsByGrupa(termin.getGrupa().getId());
         studenci.clear();
@@ -55,10 +69,19 @@ public class ZarzadzanieObecnosciamiController extends MainMenuController {
         }
     }
 
+    /**
+     * Ustawia stage (okno), który będzie zamykany po zapisaniu obecności.
+     * @param stage okno do zamknięcia po wysłaniu danych
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     * Reprezentacja pojedynczego wiersza w tabeli obecności.
+     * Przechowuje referencję do studenta oraz trzy właściwości boolean odpowiadające statusowi obecności.
+     * Gwarantuje, że w danym momencie tylko jeden status może być zaznaczony.
+     */
     public static class StudentObecnoscRow {
         private final Student student;
         private final BooleanProperty obecny = new SimpleBooleanProperty(false);
@@ -68,6 +91,7 @@ public class ZarzadzanieObecnosciamiController extends MainMenuController {
         public StudentObecnoscRow(Student student) {
             this.student = student;
 
+            // Wykluczenie wielokrotnego zaznaczenia statusów
             obecny.addListener((obs, oldVal, newVal) -> {
                 if (newVal) {
                     spozniony.set(false);
@@ -105,12 +129,16 @@ public class ZarzadzanieObecnosciamiController extends MainMenuController {
         }
     }
 
+    /**
+     * Inicjalizacja tabeli i kolumn - ustawienie nazw studentów oraz checkboxów.
+     */
     @FXML
     public void initialize() {
         colStudentID.setCellValueFactory(data -> {
             Student student = data.getValue().getStudent();
-            return new SimpleStringProperty(student.getImie() + " " + student.getNazwisko()); // lub student.getId()
+            return new SimpleStringProperty(student.getImie() + " " + student.getNazwisko());
         });
+
         colObecny.setCellValueFactory(data -> data.getValue().obecnyProperty());
         colSpozniony.setCellValueFactory(data -> data.getValue().spoznionyProperty());
         colNieobecny.setCellValueFactory(data -> data.getValue().nieobecnyProperty());
@@ -127,9 +155,16 @@ public class ZarzadzanieObecnosciamiController extends MainMenuController {
         tabelaObecnosci.setItems(studenci);
     }
 
+    /**
+     * Akcja wywoływana po kliknięciu przycisku wysyłania obecności.
+     * Kasuje stare obecności i wysyła nowe statusy obecności do serwera.
+     * Zamknięcie okna po pomyślnym wysłaniu.
+     *
+     * @param event event kliknięcia
+     * @throws IOException w przypadku błędu komunikacji z serwerem
+     */
     @FXML
     private void handleWyslij(ActionEvent event) throws IOException {
-
         if (termin == null) {
             System.err.println("Termin nie został ustawiony!");
             return;
@@ -148,6 +183,7 @@ public class ZarzadzanieObecnosciamiController extends MainMenuController {
             } else if (row.nieobecnyProperty().get()) {
                 status = Status.NIEOBECNY;
             } else {
+                // Jeżeli żaden status nie został zaznaczony, pomijamy
                 continue;
             }
 
@@ -160,13 +196,16 @@ public class ZarzadzanieObecnosciamiController extends MainMenuController {
             obecnosci.add(ob);
         }
 
-        obecnosci.forEach(obecnosc ->
-        {
+        // Wysyłamy obecności pojedynczo i obsługujemy ewentualne błędy
+        for (Obecnosc obecnosc : obecnosci) {
             try {
                 boolean success = obecnoscService.sendObecnosc(obecnosc);
                 if (success) {
-                    System.out.println("Wysłano obecność:");
-                    System.out.printf("Student: %s %s, Termin: %d, Status: %s%n", obecnosc.getStudent().getImie(), obecnosc.getStudent().getNazwisko(), obecnosc.getTerminID(), obecnosc.getStatus());
+                    System.out.printf("Wysłano obecność: Student: %s %s, Termin: %d, Status: %s%n",
+                            obecnosc.getStudent().getImie(),
+                            obecnosc.getStudent().getNazwisko(),
+                            obecnosc.getTerminID(),
+                            obecnosc.getStatus());
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Niepoprawne dane!");
                     alert.setTitle("Błąd");
@@ -176,9 +215,8 @@ public class ZarzadzanieObecnosciamiController extends MainMenuController {
                 e.printStackTrace();
                 new Alert(Alert.AlertType.ERROR, "Błąd podczas wysyłania danych").show();
             }
-        });
+        }
 
         stage.close();
-
     }
 }

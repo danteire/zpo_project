@@ -1,6 +1,5 @@
 package org.example.nauczycieldesktopapp.controller.zarzadzanie;
 
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,28 +13,45 @@ import org.example.nauczycieldesktopapp.view.zarzadzanie.ZarzadzanieStudentamiVi
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Kontroler odpowiedzialny za wyświetlanie listy studentów,
+ * usuwanie ich oraz przypisywanie do grup.
+ */
 public class ZarzadzanieStudentamiController extends MainMenuController {
 
+    @FXML
+    private TableView<Student> studentTable;
 
-    @FXML private TableView<Student> studentTable;
-    @FXML private TableColumn<Student, String> imieColumn;
-    @FXML private TableColumn<Student, String> nazwiskoColumn;
-    @FXML private TableColumn<Student, String> indeksColumn;
-    @FXML private TableColumn<Student, Void> grupaColumn;
-    @FXML private TableColumn<Student, Void> deleteColumn;
+    @FXML
+    private TableColumn<Student, String> imieColumn;
 
+    @FXML
+    private TableColumn<Student, String> nazwiskoColumn;
+
+    @FXML
+    private TableColumn<Student, String> indeksColumn;
+
+    @FXML
+    private TableColumn<Student, Void> grupaColumn;
+
+    @FXML
+    private TableColumn<Student, Void> deleteColumn;
 
     private final StudentService studentService = new StudentService();
+
     private final ObservableList<Student> studentObservableList = FXCollections.observableArrayList();
 
+    /**
+     * Inicjalizacja tabeli i wczytanie listy studentów.
+     */
     @FXML
     public void initialize() {
         imieColumn.setCellValueFactory(cellData -> cellData.getValue().imieProperty());
         nazwiskoColumn.setCellValueFactory(cellData -> cellData.getValue().nazwiskoProperty());
         indeksColumn.setCellValueFactory(cellData -> cellData.getValue().indeksProperty());
 
-        deleteButtonTable();
-        checkAndPrintGroupColumn();
+        initializeDeleteButtonColumn();
+        initializeGroupAssignmentColumn();
 
         try {
             List<Student> students = studentService.getAllStudents();
@@ -43,11 +59,14 @@ public class ZarzadzanieStudentamiController extends MainMenuController {
             studentTable.setItems(studentObservableList);
         } catch (IOException e) {
             e.printStackTrace();
+            // Tutaj można też wyświetlić Alert z informacją o błędzie.
         }
     }
 
-
-    private void deleteButtonTable() {
+    /**
+     * Dodaje kolumnę z przyciskiem "Usuń" do tabeli studentów.
+     */
+    private void initializeDeleteButtonColumn() {
         Callback<TableColumn<Student, Void>, TableCell<Student, Void>> cellFactory = param -> new TableCell<>() {
             private final Button btn = new Button("Usuń");
 
@@ -73,16 +92,17 @@ public class ZarzadzanieStudentamiController extends MainMenuController {
         deleteColumn.setCellFactory(cellFactory);
     }
 
-
-    private void checkAndPrintGroupColumn(){
+    /**
+     * Dodaje kolumnę do przypisywania studenta do grupy.
+     * Jeśli student należy już do grupy, pokazuje nazwę grupy zamiast przycisku.
+     */
+    private void initializeGroupAssignmentColumn() {
         Callback<TableColumn<Student, Void>, TableCell<Student, Void>> cellFactory = param -> new TableCell<>() {
-
             private final Button assignButton = new Button("Przypisz do grupy");
 
             {
                 assignButton.setOnAction(event -> {
                     Student student = getTableView().getItems().get(getIndex());
-
                     try {
                         ZarzadzanieStudentamiView.launchSubList(grupa -> {
                             try {
@@ -91,7 +111,7 @@ public class ZarzadzanieStudentamiController extends MainMenuController {
                                     student.setGrupa(grupa);
                                     studentTable.refresh();
                                 } else {
-                                    System.err.println("Nie udało się przypisać.");
+                                    System.err.println("Nie udało się przypisać studenta do grupy.");
                                 }
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
@@ -125,5 +145,3 @@ public class ZarzadzanieStudentamiController extends MainMenuController {
         grupaColumn.setCellFactory(cellFactory);
     }
 }
-
-

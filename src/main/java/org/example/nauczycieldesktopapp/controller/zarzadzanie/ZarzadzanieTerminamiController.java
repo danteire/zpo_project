@@ -20,29 +20,51 @@ import org.example.nauczycieldesktopapp.view.zarzadzanie.ZarzadzanieTerminamiVie
 import java.io.IOException;
 import java.util.List;
 
-import static javafx.application.Application.launch;
-
+/**
+ * Kontroler widoku zarządzania terminami.
+ * Dziedziczy po MainMenuController, obsługuje tabelę grup oraz akcje dodawania i przeglądania terminów.
+ */
 public class ZarzadzanieTerminamiController extends MainMenuController {
 
-    @FXML public TableView<Grupa> groupTable;
+    /** Tabela wyświetlająca listę grup. */
+    @FXML
+    private TableView<Grupa> groupTable;
 
-    @FXML public TableColumn<Grupa, String> idColumn;
-    @FXML public TableColumn<Grupa, String> nameColumn;
+    /** Kolumna z ID grupy (jako String). */
+    @FXML
+    private TableColumn<Grupa, String> idColumn;
 
-    @FXML public TableColumn<Grupa, Void> listaBtnColumn;
-    @FXML public TableColumn<Grupa, Void> deleteColumn;
-    @FXML public TableColumn<Grupa, Void> addColumn;
+    /** Kolumna z nazwą grupy. */
+    @FXML
+    private TableColumn<Grupa, String> nameColumn;
 
+    /** Kolumna z przyciskiem do wyświetlania terminów danej grupy. */
+    @FXML
+    private TableColumn<Grupa, Void> listaBtnColumn;
+
+    /** Kolumna z przyciskiem do usuwania grupy (jeśli nieużywana można usunąć). */
+    @FXML
+    private TableColumn<Grupa, Void> deleteColumn;
+
+    /** Kolumna z przyciskiem do dodawania nowego terminu dla grupy. */
+    @FXML
+    private TableColumn<Grupa, Void> addColumn;
+
+    /** Serwis do obsługi operacji na grupach. */
     private final GrupaService grupaService = new GrupaService();
+
+    /** Serwis do obsługi operacji na terminach. */
     private final TerminService terminService = new TerminService();
 
+    /** Lista obserwowalna grup, powiązana z tabelą. */
     private final ObservableList<Grupa> grupaObservableList = FXCollections.observableArrayList();
 
-
-
+    /**
+     * Inicjalizuje widok, konfigurując kolumny tabeli oraz przyciski,
+     * a także ładuje listę grup z serwera.
+     */
     @FXML
     public void initialize() {
-
         idColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getId()).asString());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nazwaProperty());
 
@@ -55,9 +77,14 @@ public class ZarzadzanieTerminamiController extends MainMenuController {
             groupTable.setItems(grupaObservableList);
         } catch (IOException e) {
             e.printStackTrace();
+            // Tutaj można dodać Alert informujący użytkownika o błędzie ładowania danych
         }
     }
 
+    /**
+     * Ustawia kolumnę z przyciskiem "Dodaj termin" dla każdej grupy.
+     * Po kliknięciu przycisku otwiera widok dodawania nowego terminu przypisanego do danej grupy.
+     */
     private void addButtonTable() {
         Callback<TableColumn<Grupa, Void>, TableCell<Grupa, Void>> cellFactory = param -> new TableCell<>() {
             private final Button btn = new Button("Dodaj termin");
@@ -65,15 +92,14 @@ public class ZarzadzanieTerminamiController extends MainMenuController {
             {
                 btn.setOnAction(event -> {
                     Grupa grupa = getTableView().getItems().get(getIndex());
-
                     Termin termin = new Termin();
                     termin.setGrupa(grupa);
+
                     try {
                         DodawanieTerminuView.launch(termin);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-
                 });
             }
 
@@ -86,13 +112,16 @@ public class ZarzadzanieTerminamiController extends MainMenuController {
         addColumn.setCellFactory(cellFactory);
     }
 
+    /**
+     * Ustawia kolumnę z przyciskiem "Pokaż Terminy" dla każdej grupy.
+     * Po kliknięciu przycisku otwiera widok zarządzania terminami dla danej grupy.
+     */
     private void terminListButtonTable() {
         Callback<TableColumn<Grupa, Void>, TableCell<Grupa, Void>> cellFactory = param -> new TableCell<>() {
             private final Button btn = new Button("Pokaż Terminy");
 
             {
                 btn.setOnAction(event -> {
-
                     Grupa grupa = getTableView().getItems().get(getIndex());
 
                     try {
@@ -100,7 +129,6 @@ public class ZarzadzanieTerminamiController extends MainMenuController {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-
                 });
             }
 
@@ -113,4 +141,5 @@ public class ZarzadzanieTerminamiController extends MainMenuController {
 
         listaBtnColumn.setCellFactory(cellFactory);
     }
+
 }

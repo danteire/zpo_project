@@ -12,11 +12,23 @@ import org.example.nauczycieldesktopapp.view.dodawanie.DodawanieStudentaView;
 import java.io.IOException;
 import java.util.function.Consumer;
 
+/**
+ * Klasa odpowiedzialna za wyświetlanie widoku zarządzania studentami.
+ * Umożliwia uruchomienie głównego widoku oraz widoku wyboru grupy.
+ * Okna można przesuwać przeciągając dowolny obszar widoku.
+ */
 public class ZarzadzanieStudentamiView {
 
     private static double xOffset = 0;
     private static double yOffset = 0;
 
+    /**
+     * Uruchamia główny widok zarządzania studentami w podanym oknie Stage.
+     * Umożliwia przesuwanie okna przeciągając dowolny obszar widoku.
+     *
+     * @param stage okno, w którym ma zostać wyświetlony widok zarządzania studentami
+     * @throws IOException jeśli wystąpi problem z załadowaniem pliku FXML
+     */
     public static void launch(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ZarzadzanieStudentamiView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ZarzadzanieViews/ZarzadzanieStudentamiView.fxml"));
         Parent root = fxmlLoader.load();
@@ -39,6 +51,14 @@ public class ZarzadzanieStudentamiView {
         stage.show();
     }
 
+    /**
+     * Uruchamia widok listy grup w nowym oknie Stage.
+     * Po wybraniu grupy wywołuje przekazany Consumer i zamyka okno.
+     * Umożliwia przesuwanie okna przeciągając dowolny obszar widoku.
+     *
+     * @param onGroupSelected akcja wykonywana po wybraniu grupy
+     * @throws IOException jeśli wystąpi problem z załadowaniem pliku FXML
+     */
     public static void launchSubList(Consumer<Grupa> onGroupSelected) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ListViews/GroupListView.fxml"));
         Parent root = fxmlLoader.load();

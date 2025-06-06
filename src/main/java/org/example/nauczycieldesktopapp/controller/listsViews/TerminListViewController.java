@@ -17,10 +17,15 @@ import org.example.nauczycieldesktopapp.view.zarzadzanie.ZarzadzanieObecnosciami
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Kontroler widoku listy terminów przypisanych do danej grupy.
+ * Umożliwia wyświetlanie, usuwanie oraz zarządzanie obecnościami dla terminów.
+ *
+ * @version 1.0
+ */
 public class TerminListViewController {
 
     @FXML public TableView<Termin> terminsTable;
-
     @FXML public TableColumn<Termin, String> idColumn;
     @FXML public TableColumn<Termin, String> dateColumn;
     @FXML public TableColumn<Termin, Void> deleteColumn;
@@ -28,20 +33,33 @@ public class TerminListViewController {
 
     private final TerminService terminService = new TerminService();
 
+    /**
+     * Ustawia i wyświetla wszystkie terminy należące do podanej grupy.
+     *
+     * @param grupa grupa, dla której mają zostać wyświetlone terminy
+     * @throws IOException w przypadku błędu podczas pobierania danych z serwera
+     */
     public void setTerminy(Grupa grupa) throws IOException {
         List<Termin> terminy = terminService.getTerminByGrupa(grupa.getId());
-
         ObservableList<Termin> lista = FXCollections.observableArrayList(terminy);
         terminsTable.setItems(lista);
     }
 
+    /**
+     * Inicjalizuje kolumny tabeli oraz dodaje przyciski do usuwania i zarządzania obecnością.
+     */
+    @FXML
     public void initialize() {
         idColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getId()).asString());
         dateColumn.setCellValueFactory(cellData -> cellData.getValue().dataProperty());
+
         checkTerminButton();
         usunTerminButton();
     }
 
+    /**
+     * Tworzy kolumnę z przyciskiem "Usuń Termin", który pozwala usuwać terminy z tabeli i serwera.
+     */
     private void usunTerminButton() {
         Callback<TableColumn<Termin, Void>, TableCell<Termin, Void>> cellFactory = param -> new TableCell<>() {
             private final Button btn = new Button("Usuń Termin");
@@ -74,6 +92,10 @@ public class TerminListViewController {
         };
         deleteColumn.setCellFactory(cellFactory);
     }
+
+    /**
+     * Tworzy kolumnę z przyciskiem "Sprawdź Obecność", który otwiera widok zarządzania obecnościami dla danego terminu.
+     */
     private void checkTerminButton() {
         Callback<TableColumn<Termin, Void>, TableCell<Termin, Void>> cellFactory = param -> new TableCell<>() {
             private final Button btn = new Button("Sprawdź Obecność");

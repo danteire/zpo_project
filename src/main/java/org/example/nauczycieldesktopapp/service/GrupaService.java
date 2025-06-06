@@ -13,8 +13,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * Serwis do obsługi operacji na encji Grupa.
+ * Komunikuje się z zewnętrznym REST API udostępniającym zasoby grup.
+ */
 public class GrupaService {
 
+    /**
+     * Dodaje nową grupę do systemu poprzez wywołanie REST API.
+     *
+     * @param grupa obiekt Grupa do dodania
+     * @return true jeśli operacja zakończyła się sukcesem (HTTP 200), false w przeciwnym wypadku
+     * @throws IOException gdy wystąpi problem z komunikacją sieciową
+     */
     public boolean addGrupa(Grupa grupa) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
@@ -40,6 +51,14 @@ public class GrupaService {
 
         return status == 200;
     }
+
+    /**
+     * Usuwa grupę z systemu na podstawie jej ID, wywołując odpowiednie REST API.
+     *
+     * @param grupa obiekt Grupa do usunięcia
+     * @return true jeśli operacja zakończyła się sukcesem (HTTP 200 lub 204), false w przypadku błędu
+     * @throws IOException gdy wystąpi problem z komunikacją sieciową
+     */
     public boolean removeGrupa(Grupa grupa) throws IOException {
         try {
             String restURL = "http://3.71.11.3:8080/groups";
@@ -56,6 +75,13 @@ public class GrupaService {
             return false;
         }
     }
+
+    /**
+     * Pobiera listę wszystkich grup z serwera REST.
+     *
+     * @return lista wszystkich grup
+     * @throws IOException gdy wystąpi problem z komunikacją sieciową lub przetwarzaniem odpowiedzi
+     */
     public static List<Grupa> getAllGroups() throws IOException {
         String restURL = "http://3.71.11.3:8080/groups";
         URL endpoint = new URL(restURL);

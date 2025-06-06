@@ -23,6 +23,12 @@ import java.util.Scanner;
 
 public class TerminService {
 
+    /**
+     * Pobiera listę wszystkich terminów z serwera REST API.
+     *
+     * @return lista wszystkich terminów
+     * @throws IOException w przypadku problemów z połączeniem lub odczytem danych
+     */
     public List<Termin> getAllTermins() throws IOException {
         String url = "http://3.71.11.3:8080/terminy";
         URL endpoint = new URL(url);
@@ -44,6 +50,13 @@ public class TerminService {
         return mapper.readValue(json.toString(), new TypeReference<>() {});
     }
 
+    /**
+     * Usuwa podany termin na serwerze.
+     *
+     * @param termin termin do usunięcia
+     * @return true jeśli operacja zakończyła się sukcesem (kod HTTP 200 lub 204), false w przeciwnym razie
+     * @throws IOException w przypadku problemów z połączeniem
+     */
     public boolean deleteTermin(Termin termin) throws IOException {
         try {
             String restURL = "http://3.71.11.3:8080/terminy";
@@ -61,6 +74,14 @@ public class TerminService {
         }
     }
 
+    /**
+     * Dodaje nowy termin na serwerze.
+     * Po pomyślnym dodaniu tworzy wpisy obecności dla studentów przypisanych do grupy terminu.
+     *
+     * @param termin termin do dodania
+     * @return true jeśli dodanie zakończyło się sukcesem, false w przeciwnym przypadku
+     * @throws IOException w przypadku problemów z połączeniem lub przetwarzaniem danych
+     */
     public boolean addTermin(Termin termin) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
@@ -107,6 +128,13 @@ public class TerminService {
         }
     }
 
+    /**
+     * Tworzy wpisy obecności dla wszystkich studentów należących do grupy terminu.
+     * Status obecności ustawia na {@link Status#BRAK}.
+     *
+     * @param savedTermin termin, dla którego mają zostać dodane obecności
+     * @throws IOException w przypadku błędów podczas dodawania obecności
+     */
     private void dodajObecnosciDlaTerminu(Termin savedTermin) throws IOException {
         StudentService studentService = new StudentService();
         ObecnoscService obecnoscService = new ObecnoscService();
@@ -123,6 +151,13 @@ public class TerminService {
         }
     }
 
+    /**
+     * Pobiera listę terminów przypisanych do grupy o podanym identyfikatorze.
+     *
+     * @param id identyfikator grupy
+     * @return lista terminów dla danej grupy
+     * @throws IOException w przypadku błędów komunikacji z serwerem
+     */
     public List<Termin> getTerminByGrupa(Long id) throws IOException {
         // GET IP/students/groups/_IDGRUPY_
         String restURL = "http://3.71.11.3:8080/terminy/group/" + id;

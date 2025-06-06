@@ -6,18 +6,28 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.example.nauczycieldesktopapp.controller.listsViews.GenObecnosci;
 import org.example.nauczycieldesktopapp.controller.listsViews.SprawdzObecnosciController;
-import org.example.nauczycieldesktopapp.controller.listsViews.StudentListViewController;
-import org.example.nauczycieldesktopapp.model.Grupa;
 import org.example.nauczycieldesktopapp.model.Termin;
 import org.example.nauczycieldesktopapp.view.dodawanie.DodawanieStudentaView;
 
 import java.io.IOException;
 
+/**
+ * Klasa odpowiedzialna za wyświetlanie widoku do sprawdzania obecności.
+ * Umożliwia uruchomienie głównego widoku oraz podwidoku listy obecności dla konkretnego terminu.
+ * Okna można przesuwać przeciągając dowolny obszar widoku.
+ */
 public class SprawdzObecnosciView {
 
     private static double xOffset = 0;
     private static double yOffset = 0;
 
+    /**
+     * Uruchamia główny widok sprawdzania obecności w podanym oknie Stage.
+     * Umożliwia przesuwanie okna przeciągając dowolny obszar widoku.
+     *
+     * @param stage okno, w którym ma zostać wyświetlony widok sprawdzania obecności
+     * @throws IOException jeśli wystąpi problem z załadowaniem pliku FXML
+     */
     public static void launch(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ListViews/SprawdzObecnosciView.fxml"));
         Parent root = fxmlLoader.load();
@@ -42,6 +52,14 @@ public class SprawdzObecnosciView {
 
         stage.show();
     }
+
+    /**
+     * Uruchamia podwidok listy obecności dla podanego terminu w nowym oknie Stage.
+     * Umożliwia przesuwanie okna przeciągając dowolny obszar widoku.
+     *
+     * @param termin termin, dla którego ma zostać wyświetlona lista obecności
+     * @throws IOException jeśli wystąpi problem z załadowaniem pliku FXML
+     */
     public static void launchSubList(Termin termin) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ListViews/ObecnosciListView.fxml"));
         Parent root = fxmlLoader.load();

@@ -11,11 +11,23 @@ import org.example.nauczycieldesktopapp.view.dodawanie.DodawanieStudentaView;
 
 import java.io.IOException;
 
+/**
+ * Klasa odpowiedzialna za wyświetlanie widoku zarządzania obecnościami.
+ * Umożliwia uruchomienie okna z listą obecności dla wybranego terminu.
+ * Widok można przesuwać przeciągając dowolny obszar okna.
+ */
 public class ZarzadzanieObecnosciamiView {
 
     private static double xOffset = 0;
     private static double yOffset = 0;
 
+    /**
+     * Uruchamia widok zarządzania obecnościami dla podanego terminu.
+     * Tworzy nowe okno Stage o ustalonych wymiarach i umożliwia jego przesuwanie.
+     *
+     * @param termin termin, dla którego ma zostać wyświetlona lista obecności
+     * @throws IOException jeśli wystąpi problem z załadowaniem pliku FXML
+     */
     public static void launch(Termin termin) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ZarzadzanieStudentamiView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ZarzadzanieViews/ZarzadzanieObecnosciami.fxml"));
         Parent root = fxmlLoader.load();

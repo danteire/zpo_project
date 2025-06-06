@@ -10,11 +10,23 @@ import org.example.nauczycieldesktopapp.controller.listsViews.StudentListViewCon
 import org.example.nauczycieldesktopapp.model.Grupa;
 import org.example.nauczycieldesktopapp.view.dodawanie.DodawanieStudentaView;
 
+/**
+ * Klasa zarządza widokiem zarządzania grupami w aplikacji desktopowej.
+ * Umożliwia uruchomienie głównego widoku zarządzania grupami oraz widoku listy studentów dla konkretnej grupy.
+ * Widoki umożliwiają przesuwanie okna przez przeciąganie dowolnego obszaru widoku.
+ */
 public class ZarzadzanieGrupamiView {
 
     private static double xOffset = 0;
     private static double yOffset = 0;
 
+    /**
+     * Uruchamia główny widok zarządzania grupami w podanym oknie Stage.
+     * Umożliwia przesuwanie okna przeciągając dowolny obszar widoku.
+     *
+     * @param stage okno, w którym ma zostać wyświetlony widok zarządzania grupami
+     * @throws IOException jeśli wystąpi problem z załadowaniem pliku FXML
+     */
     public static void launch(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ZarzadzanieViews/ZarzadzanieGrupami.fxml"));
         Parent root = fxmlLoader.load();
@@ -35,6 +47,14 @@ public class ZarzadzanieGrupamiView {
         stage.setTitle("Dodaj Studenta");
         stage.show();
     }
+
+    /**
+     * Uruchamia widok listy studentów dla podanej grupy w nowym oknie Stage.
+     * Umożliwia przesuwanie okna przeciągając dowolny obszar widoku.
+     *
+     * @param grupa grupa, dla której ma zostać wyświetlona lista studentów
+     * @throws IOException jeśli wystąpi problem z załadowaniem pliku FXML
+     */
     public static void launchSubList(Grupa grupa) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(DodawanieStudentaView.class.getResource("/org/example/nauczycieldesktopapp/fxml/ListViews/StudentListView.fxml"));
         Parent root = fxmlLoader.load();

@@ -20,26 +20,61 @@ import org.example.nauczycieldesktopapp.view.zarzadzanie.ZarzadzanieGrupamiView;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Kontroler odpowiedzialny za zarządzanie widokiem grup.
+ * <p>
+ * Udostępnia funkcjonalności takie jak wyświetlanie listy grup,
+ * usuwanie grup oraz wyświetlanie listy studentów przypisanych do danej grupy.
+ * Rozszerza {@link MainMenuController}.
+ */
 public class ZarzadznieGrupamiController extends MainMenuController {
 
-    @FXML public TableView<Grupa> groupTable;
+    /**
+     * Tabela wyświetlająca grupy.
+     */
+    @FXML
+    public TableView<Grupa> groupTable;
 
-    @FXML public TableColumn<Grupa, String> idColumn;
-    @FXML public TableColumn<Grupa, String> nameColumn;
+    /**
+     * Kolumna wyświetlająca identyfikator grupy.
+     */
+    @FXML
+    public TableColumn<Grupa, String> idColumn;
 
-    @FXML public TableColumn<Grupa, Void> listaBtnColumn;
-    @FXML public TableColumn<Grupa, Void> deleteColumn;
+    /**
+     * Kolumna wyświetlająca nazwę grupy.
+     */
+    @FXML
+    public TableColumn<Grupa, String> nameColumn;
 
+    /**
+     * Kolumna z przyciskiem do wyświetlania studentów przypisanych do grupy.
+     */
+    @FXML
+    public TableColumn<Grupa, Void> listaBtnColumn;
 
+    /**
+     * Kolumna z przyciskiem do usuwania grupy.
+     */
+    @FXML
+    public TableColumn<Grupa, Void> deleteColumn;
+
+    /**
+     * Serwis odpowiedzialny za operacje na grupach.
+     */
     private final GrupaService grupaService = new GrupaService();
 
+    /**
+     * Observable lista grup używana jako model danych dla tabeli.
+     */
     private final ObservableList<Grupa> grupaObservableList = FXCollections.observableArrayList();
 
-
-
+    /**
+     * Metoda inicjalizująca kontroler.
+     * Ustawia fabryki komórek dla kolumn, ładuje listę grup i ustawia je w tabeli.
+     */
     @FXML
     public void initialize() {
-
         idColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getId()).asString());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nazwaProperty());
 
@@ -55,6 +90,10 @@ public class ZarzadznieGrupamiController extends MainMenuController {
         }
     }
 
+    /**
+     * Tworzy i ustawia w kolumnie deleteColumn przycisk do usuwania grupy.
+     * Po kliknięciu usuwa wybraną grupę z bazy i aktualizuje widok.
+     */
     private void deleteButtonTable() {
         Callback<TableColumn<Grupa, Void>, TableCell<Grupa, Void>> cellFactory = param -> new TableCell<>() {
             private final Button btn = new Button("Usuń");
@@ -86,6 +125,10 @@ public class ZarzadznieGrupamiController extends MainMenuController {
         deleteColumn.setCellFactory(cellFactory);
     }
 
+    /**
+     * Tworzy i ustawia w kolumnie listaBtnColumn przycisk do wyświetlania studentów przypisanych do grupy.
+     * Po kliknięciu wywołuje nowy widok z listą studentów danej grupy.
+     */
     private void studentListButtonTable() {
         Callback<TableColumn<Grupa, Void>, TableCell<Grupa, Void>> cellFactory = param -> new TableCell<>() {
             private final Button btn = new Button("Pokaż studentów");
