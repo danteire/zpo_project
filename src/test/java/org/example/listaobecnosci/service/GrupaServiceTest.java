@@ -1,8 +1,11 @@
 package org.example.listaobecnosci.service;
 
 import org.example.listaobecnosci.Grupa;
+import org.example.listaobecnosci.Termin;
 import org.example.listaobecnosci.repository.GrupaRepository;
+import org.example.listaobecnosci.repository.StudentRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -13,13 +16,17 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
-import org.junit.jupiter.api.extension.ExtendWith;
-
 @ExtendWith(MockitoExtension.class)
 class GrupaServiceTest {
 
     @Mock
     private GrupaRepository grupaRepository;
+
+    @Mock
+    private StudentRepository studentRepository;
+
+    @Mock
+    private TerminService terminService;
 
     @InjectMocks
     private GrupaService grupaService;
@@ -61,7 +68,15 @@ class GrupaServiceTest {
 
     @Test
     void shouldDeleteGrupa() {
-        grupaService.deleteGrupa(1L);
-        verify(grupaRepository).deleteById(1L);
+        Long id = 1L;
+
+        // symulacja braku terminów
+        when(terminService.getTerminByGrupaId(id)).thenReturn(List.of());
+
+        grupaService.deleteGrupa(id);
+
+        verify(studentRepository).unsetGrupaForStudentsByGrupaId(id);
+        verify(terminService).getTerminByGrupaId(id);
+        verify(grupaRepository).deleteById(id);
     }
 }
